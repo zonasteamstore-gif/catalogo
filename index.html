@@ -234,13 +234,17 @@ function aplicarFiltros() {
     // Con búsqueda: ordenar por % coincidencia
     filtrados = buscar(base, query);
   } else {
-    // Sin búsqueda: ordenar por popularidad (rank, luego appid para los sin rank)
-    filtrados = [...base].sort((a, b) => {
+    // Sin búsqueda: disponibles primero ordenados por ranking singleplayer,
+    // luego no disponibles también por ranking
+    const sortByRank = (a, b) => {
       if (a.rank > 0 && b.rank > 0) return a.rank - b.rank;
       if (a.rank > 0) return -1;
       if (b.rank > 0) return 1;
       return Number(a.appid) - Number(b.appid);
-    });
+    };
+    const disp   = base.filter(j => j.disp).sort(sortByRank);
+    const noDisp = base.filter(j => !j.disp).sort(sortByRank);
+    filtrados = [...disp, ...noDisp];
   }
 
   pagina = 0;
