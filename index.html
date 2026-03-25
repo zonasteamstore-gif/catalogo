@@ -3,25 +3,37 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ZonaSteam — Catálogo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <title>ZonaSteam — Catálogo Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg:        #080c14;
-      --surface:   #0d1220;
-      --surface2:  #111827;
-      --border:    #1e2d45;
-      --accent:    #00c8ff;
-      --accent2:   #0066ff;
-      --danger:    #ff3a3a;
-      --text:      #c9d6e8;
-      --text-dim:  #4a5a72;
-      --text-mute: #2a3a52;
-      --glow:      rgba(0,200,255,0.12);
+      /* Paleta de colores profunda y elegante */
+      --bg:           #05080f;
+      --surface:      rgba(13, 18, 32, 0.7);
+      --surface-hover:rgba(20, 28, 48, 0.9);
+      --surface2:     rgba(255, 255, 255, 0.03);
+      --border:       rgba(255, 255, 255, 0.1);
+      --accent:       #00e5ff;
+      --accent-dark:  #0077ff;
+      --danger:       #ff3a3a;
+      --warning:      #f0a500;
+      --success:      #00e676;
+      --text:         #e2e8f0;
+      --text-dim:     #94a3b8;
+      --text-mute:    #475569;
+      --glow-cyan:    rgba(0, 229, 255, 0.3);
+      --glow-orange:  rgba(240, 165, 0, 0.15);
     }
 
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    html { 
+      scroll-behavior: smooth; 
+    }
 
     body {
       background: var(--bg);
@@ -29,350 +41,436 @@
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
     }
 
+    /* Fondo animado sutil */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 40% at 50% -10%, rgba(0,102,255,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 30% at 90% 80%, rgba(0,200,255,0.04) 0%, transparent 60%);
+        radial-gradient(circle 800px at 50% -20%, rgba(0, 119, 255, 0.15), transparent),
+        radial-gradient(circle 600px at 90% 80%, rgba(0, 229, 255, 0.05), transparent);
       pointer-events: none;
-      z-index: 0;
+      z-index: -1;
     }
 
-    /* HEADER */
+    /* HEADER CON TUS IMÁGENES REALES */
     header {
       position: relative;
       z-index: 10;
-      padding: 48px 24px 36px;
+      padding: 50px 24px 30px;
       text-align: center;
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(0,102,255,0.06) 0%, transparent 100%);
+      background: linear-gradient(180deg, rgba(0, 119, 255, 0.05) 0%, transparent 100%);
     }
 
-    .logo {
-      display: inline-flex;
+    .header-content {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 6px;
+      gap: 15px;
     }
 
-    .logo-icon {
-      width: 40px; height: 40px;
-      background: linear-gradient(135deg, var(--accent2), var(--accent));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-      box-shadow: 0 0 24px rgba(0,200,255,0.3);
+    .logo-pin {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0 0 25px var(--glow-cyan);
+      border: 2px solid var(--accent);
+      transition: transform 0.3s;
+    }
+    
+    .logo-pin:hover {
+      transform: scale(1.1);
     }
 
-    h1 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #fff 30%, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .logo-name-img {
+      max-width: 320px;
+      height: auto;
+      filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.5));
     }
 
     .tagline {
-      color: var(--text-dim);
-      font-size: 0.82rem;
-      letter-spacing: 2px;
+      color: var(--accent);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      margin-top: 4px;
+      margin-top: 5px;
     }
 
-    /* SEARCH */
+    /* BUSCADOR */
     .search-section {
-      position: relative; z-index: 10;
-      max-width: 640px;
-      margin: 32px auto 0;
+      max-width: 680px;
+      margin: 35px auto 0;
       padding: 0 20px;
     }
 
-    .search-box { position: relative; }
+    .search-box { 
+      position: relative; 
+    }
 
     .search-box svg {
       position: absolute;
-      left: 18px; top: 50%;
+      left: 22px; 
+      top: 50%;
       transform: translateY(-50%);
       color: var(--text-dim);
       pointer-events: none;
+      transition: color 0.3s;
     }
 
     #buscador {
       width: 100%;
-      padding: 14px 20px 14px 50px;
+      padding: 18px 24px 18px 58px;
       background: var(--surface2);
+      backdrop-filter: blur(15px);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 20px;
       color: #fff;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     #buscador:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(0,200,255,0.1);
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 0 0 4px var(--glow-cyan);
     }
 
-    #buscador::placeholder { color: var(--text-dim); }
+    #buscador:focus + svg { 
+      color: var(--accent); 
+    }
+
+    #buscador::placeholder { 
+      color: var(--text-mute); 
+    }
 
     .search-hint {
       text-align: center;
       color: var(--text-mute);
-      font-size: 0.76rem;
-      margin-top: 10px;
+      font-size: 0.8rem;
+      margin-top: 12px;
       letter-spacing: 0.5px;
     }
 
-    /* FILTERS */
+    /* FILTROS */
     .filters {
-      position: relative; z-index: 10;
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 20px 20px 0;
+      gap: 12px;
+      padding: 25px 20px;
       flex-wrap: wrap;
     }
 
     .filter-btn {
-      padding: 6px 16px;
-      border-radius: 999px;
+      padding: 10px 22px;
+      border-radius: 12px;
       border: 1px solid var(--border);
-      background: transparent;
+      background: var(--surface);
       color: var(--text-dim);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.78rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
-      letter-spacing: 0.5px;
+      transition: all 0.3s;
     }
 
-    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn:hover { 
+      border-color: rgba(255,255,255,0.2); 
+      color: var(--text); 
+    }
+    
     .filter-btn.active {
-      background: rgba(0,200,255,0.1);
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 20px var(--glow-cyan);
       border-color: var(--accent);
-      color: var(--accent);
     }
 
     .counter {
-      position: relative; z-index: 10;
       text-align: center;
+      font-size: 0.9rem;
       color: var(--text-dim);
-      font-size: 0.78rem;
-      padding: 16px 20px 0;
-      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+    
+    .counter span { 
+      color: var(--accent); 
+      font-weight: 700; 
     }
 
-    .counter span { color: var(--accent); font-weight: 500; }
-
-    /* GRID */
+    /* GRID DE JUEGOS */
     .grid-wrap {
-      position: relative; z-index: 10;
       max-width: 1400px;
-      margin: 24px auto 0;
-      padding: 0 20px 60px;
+      margin: 0 auto;
+      padding: 0 20px 100px;
     }
 
     #grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 25px;
     }
 
-    /* CARD */
+    /* TARJETA */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 18px;
       overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-      animation: fadeIn 0.3s ease both;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: fadeIn 0.4s ease both;
     }
 
-    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
-    .card.disponible:hover { border-color: rgba(0,200,255,0.4); }
-    .card.no-disponible:hover { border-color: rgba(255,58,58,0.3); }
+    .card:hover {
+      transform: translateY(-10px);
+      background: var(--surface-hover);
+    }
+
+    .card.disponible:hover { 
+      border-color: var(--accent); 
+      box-shadow: 0 15px 45px rgba(0,0,0,0.5), 0 0 20px var(--glow-cyan); 
+    }
+    
+    .card.no-disponible:hover { 
+      border-color: var(--warning); 
+      box-shadow: 0 15px 45px rgba(0,0,0,0.5), 0 0 20px var(--glow-orange); 
+    }
 
     .card-img {
       position: relative;
-      aspect-ratio: 460/215;
+      aspect-ratio: 16/7;
+      background: #000;
       overflow: hidden;
-      background: var(--surface2);
     }
 
     .card-img img {
-      width: 100%; height: 100%;
+      width: 100%; 
+      height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.3s;
+      transition: transform 0.6s, filter 0.3s;
     }
 
-    .card:hover .card-img img { transform: scale(1.04); }
+    /* Efecto Blanco y Negro para juegos Agotados / Próximamente */
+    .card.no-disponible .card-img img {
+      filter: grayscale(100%) opacity(0.5);
+    }
+
+    .card:hover .card-img img { 
+      transform: scale(1.1); 
+    }
+    
+    .card.no-disponible:hover .card-img img {
+      filter: grayscale(70%) opacity(0.8);
+    }
 
     .card-img .overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 50%, rgba(8,12,20,0.9) 100%);
+      position: absolute; 
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, var(--bg) 100%);
     }
 
-    .img-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 8px;
-      color: var(--text-mute);
-      font-size: 0.72rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+    .card-body { 
+      padding: 14px 16px 18px; 
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
     }
-
-    .card-body { padding: 10px 12px 12px; }
 
     .card-name {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #dce8f5;
-      line-height: 1.25;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      min-height: 2.5em;
-      letter-spacing: 0.3px;
+      margin-bottom: 15px;
+      min-height: 2.4em;
     }
 
     .card-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 8px;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.8px;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 800;
       text-transform: uppercase;
-      padding: 3px 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge.ok { 
+      background: rgba(0, 230, 118, 0.15); 
+      color: var(--success); 
+      border: 1px solid rgba(0, 230, 118, 0.3); 
+    }
+
+    .badge.no { 
+      background: rgba(240, 165, 0, 0.15); 
+      color: var(--warning); 
+      border: 1px solid rgba(240, 165, 0, 0.3); 
+    }
+
+    .appid-tag { 
+      font-size: 0.7rem; 
+      color: var(--text-mute); 
+      font-family: monospace; 
+      background: rgba(255,255,255,0.05);
+      padding: 3px 6px;
       border-radius: 4px;
     }
 
-    .badge.ok  { background: rgba(0,200,255,0.1); color: var(--accent); border: 1px solid rgba(0,200,255,0.2); }
-    .badge.no  { background: rgba(255,58,58,0.08); color: #ff6060; border: 1px solid rgba(255,58,58,0.2); }
-
-    .appid-tag { font-size: 0.65rem; color: var(--text-mute); font-family: monospace; }
-
-    /* STATES */
+    /* ESTADOS DE CARGA Y MENSAJES */
     .state-msg {
       grid-column: 1 / -1;
       text-align: center;
-      padding: 80px 20px;
-      color: var(--text-dim);
+      padding: 100px 20px;
     }
 
-    .state-msg .icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.4; }
-    .state-msg h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; letter-spacing: 2px; margin-bottom: 8px; }
-    .state-msg p { font-size: 0.82rem; color: var(--text-mute); }
+    .state-msg .icon { 
+      font-size: 4rem; 
+      margin-bottom: 20px; 
+      opacity: 0.3; 
+      filter: drop-shadow(0 0 20px var(--accent)); 
+    }
 
-    .loader {
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 100px 20px; gap: 20px;
-      color: var(--text-dim);
+    .state-msg h3 { 
+      font-family: 'Rajdhani', sans-serif; 
+      font-size: 1.8rem; 
+      letter-spacing: 2px; 
+      color: #fff; 
+      margin-bottom: 8px; 
+    }
+
+    .state-msg p { 
+      font-size: 0.95rem; 
+      color: var(--text-dim); 
+    }
+
+    .loader { 
+      text-align: center; 
+      padding: 100px; 
+      grid-column: 1/-1; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .spinner {
-      width: 40px; height: 40px;
-      border: 2px solid var(--border);
+      width: 50px; 
+      height: 50px;
+      border: 4px solid var(--border);
       border-top-color: var(--accent);
       border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px var(--glow-cyan);
     }
 
     .loader-text {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 3px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--text-dim);
+      color: var(--accent);
       animation: pulse 1.5s ease infinite;
     }
 
     /* SCROLL TOP */
     #scrollTop {
       position: fixed;
-      bottom: 28px; right: 28px;
+      bottom: 32px; 
+      right: 32px;
       z-index: 100;
-      width: 42px; height: 42px;
+      width: 48px; 
+      height: 48px;
       background: var(--surface2);
+      backdrop-filter: blur(8px);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px;
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
       cursor: pointer;
-      opacity: 0; transform: translateY(12px);
-      transition: all 0.25s;
+      opacity: 0; 
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       color: var(--text-dim);
     }
 
-    #scrollTop.visible { opacity: 1; transform: translateY(0); }
-    #scrollTop:hover { border-color: var(--accent); color: var(--accent); }
+    #scrollTop.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    
+    #scrollTop:hover { 
+      border-color: var(--accent); 
+      color: var(--accent); 
+      box-shadow: 0 8px 24px var(--glow-cyan);
+      transform: translateY(-4px);
+    }
 
     footer {
-      position: relative; z-index: 10;
       text-align: center;
       padding: 0 20px 40px;
       color: var(--text-mute);
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       letter-spacing: 1px;
     }
 
-    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(15px); } to { opacity:1; transform:translateY(0); } }
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
 
-    @media (max-width: 480px) {
-      #grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
-      header { padding: 32px 16px 24px; }
+    @media (max-width: 600px) {
+      #grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+      header { padding: 40px 16px 24px; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">
-    <div class="logo-icon">🎮</div>
-    <h1>ZonaSteam</h1>
+  <div class="header-content">
+    <img src="logo.jpg" alt="Icono" class="logo-pin"/>
+    <img src="LogoName.jpg" alt="ZonaSteam" class="logo-name-img"/>
+    <p class="tagline">Catálogo Oficial de Activaciones</p>
   </div>
-  <p class="tagline">Catálogo de juegos · Steam</p>
+  
   <div class="search-section">
     <div class="search-box">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
         <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
       </svg>
-      <input type="text" id="buscador" placeholder="Buscar por nombre de juego..." autocomplete="off" spellcheck="false"/>
+      <input type="text" id="buscador" placeholder="Buscar juego..." autocomplete="off"/>
     </div>
-    <p class="search-hint">Escribí al menos 2 caracteres para buscar</p>
   </div>
 </header>
 
 <div class="filters" id="filters">
-  <button class="filter-btn active" data-filter="all">Todos</button>
+  <button class="filter-btn active" data-filter="all">Todos los Juegos</button>
   <button class="filter-btn" data-filter="disponible">✅ Disponibles</button>
-  <button class="filter-btn" data-filter="no-disponible">❌ No disponibles</button>
+  <button class="filter-btn" data-filter="no-disponible">⏳ Próximamente</button>
 </div>
 
 <p class="counter" id="counter"></p>
@@ -381,15 +479,15 @@
   <div id="grid">
     <div class="loader">
       <div class="spinner"></div>
-      <span class="loader-text">Cargando catálogo</span>
+      <span class="loader-text">Sincronizando Catálogo...</span>
     </div>
   </div>
 </div>
 
-<footer>ZonaSteam © 2025 — Activación vía Steam</footer>
+<footer>ZonaSteam © 2026 — Sistema de Activaciones Offline</footer>
 
 <button id="scrollTop" title="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
     <path d="M18 15l-6-6-6 6"/>
   </svg>
 </button>
@@ -408,47 +506,58 @@
 
   async function cargar() {
     try {
-      let disponibles = [];
-      try {
-        const r = await fetch('catalogo.json?t=' + Date.now());
-        if (r.ok) {
-          const data = await r.json();
-          disponibles = data.map(j => [j.appid ?? j[0], j.nombre ?? j.name ?? j[1], true]);
+      // LLAMADA A LA API DE GITHUB PARA EVITAR EL CACHÉ Y VER CAMBIOS AL INSTANTE
+      const url = 'https://api.github.com/repos/zonasteamstore-gif/catalogo/contents/catalogo.json';
+      
+      const response = await fetch(url, {
+        headers: {
+          'Accept': 'application/vnd.github.v3.raw',
+          'Cache-Control': 'no-cache'
         }
-      } catch(e) {}
-
-      let noDisponibles = [];
-      try {
-        const r2 = await fetch('catalogo_comprimido.json?t=' + Date.now());
-        if (r2.ok) {
-          const data2 = await r2.json();
-          noDisponibles = data2.map(j => [j[0], j[1], false]);
-        }
-      } catch(e) {}
-
-      const appidsDisp = new Set(disponibles.map(j => j[0]));
-      const noDispFilt = noDisponibles.filter(j => !appidsDisp.has(j[0]));
-      todosJuegos = [...disponibles, ...noDispFilt];
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        
+        // Mapeamos la data interpretando el 1 o 0 de la posición [2]
+        todosJuegos = data.map(j => {
+          const appid = j[0];
+          const nombre = j[1];
+          const disponible = j[2] === 1; // Si es 1, es true (Disponible)
+          
+          return [appid, nombre, disponible];
+        });
+      } else {
+        todosJuegos = [];
+      }
 
       if (todosJuegos.length === 0) {
-        mostrarVacio('No se encontró el catálogo', 'Asegurate de subir los archivos JSON a GitHub');
+        mostrarVacio('Catálogo no encontrado', 'Asegúrate de que el archivo catalogo.json esté publicado en GitHub.');
         return;
       }
+      
       aplicarFiltros();
+      
     } catch(e) {
-      mostrarVacio('Error al cargar', 'No se pudo obtener el catálogo.');
+      mostrarVacio('Error de conexión', 'No se pudo obtener el catálogo desde los servidores.');
+      console.error(e);
     }
   }
 
   function aplicarFiltros() {
     const q = queryActual.toLowerCase().trim();
+    
     filtrados = todosJuegos.filter(j => {
       const matchFiltro =
         filtroActivo === 'all'        ? true :
-        filtroActivo === 'disponible' ? j[2] === true : j[2] === false;
+        filtroActivo === 'disponible' ? j[2] === true : 
+        filtroActivo === 'no-disponible' ? j[2] === false : true;
+        
       const matchQuery = q.length < 2 || j[1].toLowerCase().includes(q);
+      
       return matchFiltro && matchQuery;
     });
+    
     paginaActual = 0;
     document.getElementById('grid').innerHTML = '';
     actualizarCounter();
@@ -456,14 +565,19 @@
   }
 
   function actualizarCounter() {
-    const disp   = filtrados.filter(j => j[2]).length;
-    const noDisp = filtrados.filter(j => !j[2]).length;
+    const disp   = filtrados.filter(j => j[2] === true).length;
+    const noDisp = filtrados.filter(j => j[2] === false).length;
     const el = document.getElementById('counter');
-    if (filtrados.length === 0) { el.innerHTML = 'Sin resultados'; return; }
+    
+    if (filtrados.length === 0) { 
+      el.innerHTML = 'Sin coincidencias para la búsqueda.'; 
+      return; 
+    }
+    
     el.innerHTML =
-      `<span>${filtrados.length.toLocaleString()}</span> juego${filtrados.length !== 1 ? 's' : ''} — ` +
-      `<span>${disp.toLocaleString()}</span> disponibles · ` +
-      `${noDisp.toLocaleString()} no disponibles`;
+      `Viendo <span>${filtrados.length.toLocaleString()}</span> juegos — ` +
+      `<span style="color:var(--success)">${disp.toLocaleString()}</span> disponibles · ` +
+      `<span style="color:var(--warning)">${noDisp.toLocaleString()}</span> próximamente`;
   }
 
   function renderPagina() {
@@ -473,60 +587,81 @@
     const chunk = filtrados.slice(desde, hasta);
 
     if (chunk.length === 0 && paginaActual === 0) {
-      mostrarVacio('Sin resultados', 'Probá con otro nombre de juego');
+      mostrarVacio('Sin resultados', 'Prueba buscando otro nombre.');
       return;
     }
 
     chunk.forEach((j, idx) => {
-      const [appid, nombre, disponible] = j;
+      const appid = j[0];
+      const nombre = j[1];
+      const disponible = j[2]; // true o false
+      
       const card = document.createElement('div');
       card.className = `card ${disponible ? 'disponible' : 'no-disponible'}`;
-      card.style.animationDelay = `${(idx % PAGE_SIZE) * 12}ms`;
+      card.style.animationDelay = `${(idx % PAGE_SIZE) * 15}ms`;
+      
       card.innerHTML = `
         <div class="card-img">
           <img src="${STEAM_IMG(appid)}" alt="${esc(nombre)}" loading="lazy"
-            onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\'><svg width=\\'28\\' height=\\'28\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.5\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'3\\'/><circle cx=\\'9\\' cy=\\'9\\' r=\\'2\\'/><path d=\\'m21 15-5-5L5 21\\'/></svg></div>'"/>
+            onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\'><svg width=\\'32\\' height=\\'32\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.5\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'3\\'/><circle cx=\\'9\\' cy=\\'9\\' r=\\'2\\'/><path d=\\'m21 15-5-5L5 21\\'/></svg></div>'"/>
           <div class="overlay"></div>
         </div>
         <div class="card-body">
           <div class="card-name" title="${esc(nombre)}">${esc(nombre)}</div>
           <div class="card-footer">
-            <span class="badge ${disponible ? 'ok' : 'no'}">${disponible ? '✅ Disponible' : '❌ No disponible'}</span>
+            <span class="badge ${disponible ? 'ok' : 'no'}">${disponible ? '✅ Disponible' : '⏳ Próximamente'}</span>
             <span class="appid-tag">#${appid}</span>
           </div>
         </div>`;
+        
       grid.appendChild(card);
     });
+    
     paginaActual++;
   }
 
   window.addEventListener('scroll', () => {
     const st = document.getElementById('scrollTop');
-    window.scrollY > 400 ? st.classList.add('visible') : st.classList.remove('visible');
+    if (window.scrollY > 400) {
+      st.classList.add('visible');
+    } else {
+      st.classList.remove('visible');
+    }
+    
     if (cargandoMas) return;
     if (paginaActual * PAGE_SIZE >= filtrados.length) return;
-    if (window.scrollY + window.innerHeight > document.documentElement.scrollHeight - 600) {
+    
+    if (window.scrollY + window.innerHeight > document.documentElement.scrollHeight - 800) {
       cargandoMas = true;
-      setTimeout(() => { renderPagina(); cargandoMas = false; }, 80);
+      setTimeout(() => { 
+        renderPagina(); 
+        cargandoMas = false; 
+      }, 50);
     }
   });
 
   document.getElementById('buscador').addEventListener('input', e => {
     clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => { queryActual = e.target.value; aplicarFiltros(); }, 220);
+    searchTimer = setTimeout(() => { 
+      queryActual = e.target.value; 
+      aplicarFiltros(); 
+    }, 250);
   });
 
   document.getElementById('filters').addEventListener('click', e => {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
+    
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    
     filtroActivo = btn.dataset.filter;
     aplicarFiltros();
   });
 
   function esc(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    if (!s) return "";
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
   function mostrarVacio(titulo, sub) {
@@ -539,6 +674,7 @@
     document.getElementById('counter').innerHTML = '';
   }
 
+  // Inicializar carga
   cargar();
 </script>
 </body>
