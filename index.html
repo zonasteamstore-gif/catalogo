@@ -56,7 +56,7 @@
       z-index: -1;
     }
 
-    /* HEADER CON TUS IMÁGENES REALES */
+    /* HEADER CON LOGO RESTAURADO */
     header {
       position: relative;
       z-index: 10;
@@ -67,30 +67,35 @@
       background: linear-gradient(180deg, rgba(0, 119, 255, 0.05) 0%, transparent 100%);
     }
 
-    .header-content {
-      display: flex;
-      flex-direction: column;
+    .logo {
+      display: inline-flex;
       align-items: center;
-      gap: 15px;
+      gap: 16px;
+      margin-bottom: 10px;
     }
 
-    .logo-pin {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      box-shadow: 0 0 25px var(--glow-cyan);
-      border: 2px solid var(--accent);
-      transition: transform 0.3s;
-    }
-    
-    .logo-pin:hover {
-      transform: scale(1.1);
+    .logo-icon {
+      width: 48px; 
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+      border-radius: 12px;
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 0 30px var(--glow-cyan);
     }
 
-    .logo-name-img {
-      max-width: 320px;
-      height: auto;
-      filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.5));
+    h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      background: linear-gradient(to right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(255,255,255,0.1);
     }
 
     .tagline {
@@ -150,14 +155,6 @@
 
     #buscador::placeholder { 
       color: var(--text-mute); 
-    }
-
-    .search-hint {
-      text-align: center;
-      color: var(--text-mute);
-      font-size: 0.8rem;
-      margin-top: 12px;
-      letter-spacing: 0.5px;
     }
 
     /* FILTROS */
@@ -451,11 +448,11 @@
 <body>
 
 <header>
-  <div class="header-content">
-    <img src="logo.jpg" alt="Icono" class="logo-pin"/>
-    <img src="LogoName.jpg" alt="ZonaSteam" class="logo-name-img"/>
-    <p class="tagline">Catálogo Oficial de Activaciones</p>
+  <div class="logo">
+    <div class="logo-icon">🎮</div>
+    <h1>ZonaSteam</h1>
   </div>
+  <p class="tagline">Catálogo Oficial de Activaciones</p>
   
   <div class="search-section">
     <div class="search-box">
@@ -506,24 +503,20 @@
 
   async function cargar() {
     try {
-      // LLAMADA A LA API DE GITHUB PARA EVITAR EL CACHÉ Y VER CAMBIOS AL INSTANTE
-      const url = 'https://api.github.com/repos/zonasteamstore-gif/catalogo/contents/catalogo.json';
+      // Usamos el CDN raw directo con un Timestamp para evitar el caché de 5 minutos,
+      // esto evita los bloqueos (Rate Limit) estrictos de la API de GitHub.
+      const url = 'https://raw.githubusercontent.com/zonasteamstore-gif/catalogo/main/catalogo.json?t=' + Date.now();
       
-      const response = await fetch(url, {
-        headers: {
-          'Accept': 'application/vnd.github.v3.raw',
-          'Cache-Control': 'no-cache'
-        }
-      });
+      const response = await fetch(url, { cache: 'no-store' });
       
       if (response.ok) {
         const data = await response.json();
         
-        // Mapeamos la data interpretando el 1 o 0 de la posición [2]
+        // Mapeamos la data: ["578080", "PUBG: BATTLEGROUNDS", 1, null, 1]
         todosJuegos = data.map(j => {
           const appid = j[0];
           const nombre = j[1];
-          const disponible = j[2] === 1; // Si es 1, es true (Disponible)
+          const disponible = j[2] === 1; // 1 = Disponible(true), 0 = Próximamente(false)
           
           return [appid, nombre, disponible];
         });
@@ -594,7 +587,7 @@
     chunk.forEach((j, idx) => {
       const appid = j[0];
       const nombre = j[1];
-      const disponible = j[2]; // true o false
+      const disponible = j[2]; 
       
       const card = document.createElement('div');
       card.className = `card ${disponible ? 'disponible' : 'no-disponible'}`;
