@@ -514,14 +514,41 @@
 
   async function cargar() {
     try {
-      // Evitamos la CDN usando el timestamp para obtener cambios al instante
-      const url = 'https://raw.githubusercontent.com/zonasteamstore-gif/catalogo/main/catalogo.json?t=' + Date.now();
-      
-      const response = await fetch(url, { cache: 'no-store' });
-      
-      if (response.ok) {
-        const data = await response.json();
+      let data = null;
+
+      // 1. INTENTO PRINCIPAL: Usamos la API de GitHub para obtener los cambios al instante.
+      // Al usar "application/vnd.github.v3.raw", GitHub nos da el archivo saltándose el caché.
+      try {
+        const apiResponse = await fetch('https://api.github.com/repos/zonasteamstore-gif/catalogo/contents/catalogo.json', {
+          headers: {
+            'Accept': 'application/vnd.github.v3.raw',
+            'Cache-Control': 'no-cache'
+          }
+        });
         
+        if (apiResponse.ok) {
+          data = await apiResponse.json();
+          console.log("Catálogo cargado al instante desde la API.");
+        }
+      } catch (error) {
+        // Ignoramos el error silenciosamente, esto ocurre si pasamos el límite de peticiones de la API.
+      }
+
+      // 2. PLAN B (FALLBACK SEGURO): Si el intento 1 falló por límite de peticiones (60/hora),
+      // pedimos el archivo por el CDN normal. Nunca dejará al usuario con la pantalla vacía.
+      if (!data) {
+        const cdnResponse = await fetch('https://raw.githubusercontent.com/zonasteamstore-gif/catalogo/main/catalogo.json?t=' + Date.now(), {
+          cache: 'no-store'
+        });
+        
+        if (cdnResponse.ok) {
+          data = await cdnResponse.json();
+          console.log("Catálogo cargado desde el CDN (Plan B activado).");
+        }
+      }
+
+      // 3. Si logramos obtener los datos por cualquiera de las 2 vías, los procesamos.
+      if (data && Array.isArray(data)) {
         todosJuegos = data.map(j => {
           const appid = j[0];
           const nombre = j[1];
@@ -529,8 +556,6 @@
           
           return [appid, nombre, disponible];
         });
-      } else {
-        todosJuegos = [];
       }
 
       if (todosJuegos.length === 0) {
