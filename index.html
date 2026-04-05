@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      /* Paleta de colores profunda y elegante */
+      /* Paleta de colores profunda y elegante (Intacta) */
       --bg:           #05080f;
       --surface:      rgba(13, 18, 32, 0.7);
       --surface-hover:rgba(20, 28, 48, 0.9);
@@ -23,437 +23,202 @@
       --text-mute:    #475569;
       --glow-cyan:    rgba(0, 229, 255, 0.3);
       --glow-orange:  rgba(240, 165, 0, 0.15);
+      --ig-gradient:  linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     }
 
-    *, *::before, *::after { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
-    }
-
-    html { 
-      scroll-behavior: smooth; 
-    }
-
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
+      background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif;
+      min-height: 100vh; overflow-x: hidden; position: relative; padding-bottom: 90px; /* Espacio para el bottom bar */
     }
 
     /* Fondo animado sutil */
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle 800px at 50% -20%, rgba(0, 119, 255, 0.15), transparent),
-        radial-gradient(circle 600px at 90% 80%, rgba(0, 229, 255, 0.05), transparent);
-      pointer-events: none;
-      z-index: -1;
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(circle 800px at 50% -20%, rgba(0, 119, 255, 0.15), transparent),
+                  radial-gradient(circle 600px at 90% 80%, rgba(0, 229, 255, 0.05), transparent);
+      pointer-events: none; z-index: -1;
     }
 
-    /* HEADER CON LOGO EN CÓDIGO (CSS) */
+    /* HEADER */
     header {
-      position: relative;
-      z-index: 10;
-      padding: 50px 24px 30px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 10; padding: 40px 24px 20px; text-align: center;
+      backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
       background: linear-gradient(180deg, rgba(0, 119, 255, 0.05) 0%, transparent 100%);
     }
 
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 10px;
-      cursor: default;
-    }
-
+    .logo { display: inline-flex; align-items: center; gap: 16px; margin-bottom: 15px; cursor: default; }
     .logo-icon {
-      width: 52px; 
-      height: 52px;
-      background: linear-gradient(135deg, var(--accent-dark), var(--accent));
-      border-radius: 14px;
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      font-size: 28px;
-      box-shadow: 0 0 25px var(--glow-cyan);
-      border: 1px solid rgba(0, 229, 255, 0.4);
-      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      width: 52px; height: 52px; background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      font-size: 28px; box-shadow: 0 0 25px var(--glow-cyan); border: 1px solid rgba(0, 229, 255, 0.4); text-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
-
     h1 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      font-weight: 700;
-      letter-spacing: 4px;
-      background: linear-gradient(to bottom right, #ffffff, #8be9fd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
-      margin: 0;
+      font-family: 'Rajdhani', sans-serif; font-size: clamp(2.4rem, 6vw, 3.8rem); font-weight: 700;
+      letter-spacing: 4px; background: linear-gradient(to bottom right, #ffffff, #8be9fd);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(0, 229, 255, 0.2); margin: 0;
     }
 
-    .tagline {
-      color: var(--accent);
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-top: 5px;
+    /* --- HERO SECTION CRO (Cómo Funciona + Oferta) --- */
+    .hero-cro {
+      max-width: 700px; margin: 0 auto 20px; background: rgba(0, 229, 255, 0.03);
+      border: 1px solid rgba(0, 229, 255, 0.15); border-radius: 16px; overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: fadeIn 0.6s ease forwards;
+    }
+    .hero-price-banner {
+      background: linear-gradient(90deg, rgba(0, 119, 255, 0.2), rgba(0, 229, 255, 0.2));
+      padding: 12px 20px; border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+      font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+    }
+    .hero-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 20px; text-align: left;
+    }
+    .step-item { display: flex; flex-direction: column; gap: 8px; align-items: center; text-align: center; }
+    .step-icon { font-size: 1.8rem; background: var(--surface2); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    .step-text { font-size: 0.85rem; color: var(--text); font-weight: 500; line-height: 1.3; }
+
+    @media (max-width: 600px) {
+      .hero-steps { grid-template-columns: 1fr; gap: 12px; padding: 15px; }
+      .step-item { flex-direction: row; text-align: left; background: var(--surface2); padding: 10px; border-radius: 10px; }
+      .step-icon { width: 36px; height: 36px; font-size: 1.2rem; flex-shrink: 0; }
+      .hero-price-banner { font-size: 1.1rem; }
     }
 
     /* BUSCADOR */
-    .search-section {
-      max-width: 680px;
-      margin: 35px auto 0;
-      padding: 0 20px;
-    }
+    .search-section { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+    .search-box { position: relative; }
+    .search-box svg { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--text-dim); pointer-events: none; transition: color 0.3s; }
+    #buscador { width: 100%; padding: 18px 24px 18px 58px; background: var(--surface2); backdrop-filter: blur(15px); border: 1px solid var(--border); border-radius: 20px; color: #fff; font-size: 1.1rem; outline: none; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    #buscador:focus { border-color: var(--accent); background: rgba(255, 255, 255, 0.07); box-shadow: 0 0 0 4px var(--glow-cyan); }
+    #buscador:focus + svg { color: var(--accent); }
+    #buscador::placeholder { color: var(--text-mute); }
 
-    .search-box { 
-      position: relative; 
-    }
-
-    .search-box svg {
-      position: absolute;
-      left: 22px; 
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-dim);
-      pointer-events: none;
-      transition: color 0.3s;
-    }
-
-    #buscador {
-      width: 100%;
-      padding: 18px 24px 18px 58px;
-      background: var(--surface2);
-      backdrop-filter: blur(15px);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      color: #fff;
-      font-size: 1.1rem;
-      outline: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    #buscador:focus {
-      border-color: var(--accent);
-      background: rgba(255, 255, 255, 0.07);
-      box-shadow: 0 0 0 4px var(--glow-cyan);
-    }
-
-    #buscador:focus + svg { 
-      color: var(--accent); 
-    }
-
-    #buscador::placeholder { 
-      color: var(--text-mute); 
-    }
-
-    .search-hint {
-      text-align: center;
-      color: var(--text-mute);
-      font-size: 0.8rem;
-      margin-top: 12px;
-      letter-spacing: 0.5px;
-    }
-
-    /* FILTROS */
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      padding: 25px 20px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: 10px 22px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text-dim);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .filter-btn:hover { 
-      border-color: rgba(255,255,255,0.2); 
-      color: var(--text); 
-    }
+    /* FILTROS Y ORDENAMIENTO */
+    .filters-wrap { max-width: 1400px; margin: 0 auto; padding: 25px 20px 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; }
+    .filters { display: flex; gap: 10px; flex-wrap: wrap; }
+    .filter-btn { padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; }
+    .filter-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+    .filter-btn.active { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--glow-cyan); border-color: var(--accent); }
     
-    .filter-btn.active {
-      background: var(--accent);
-      color: #000;
-      box-shadow: 0 0 20px var(--glow-cyan);
-      border-color: var(--accent);
+    .sort-box select {
+      appearance: none; background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      padding: 10px 35px 10px 15px; border-radius: 12px; font-family: 'Inter', sans-serif; font-weight: 500;
+      font-size: 0.9rem; outline: none; cursor: pointer; transition: all 0.3s;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
     }
-
-    .counter {
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      margin-bottom: 20px;
-    }
+    .sort-box select:hover, .sort-box select:focus { border-color: var(--accent); }
     
-    .counter span { 
-      color: var(--accent); 
-      font-weight: 700; 
-    }
+    .counter { text-align: left; font-size: 0.9rem; color: var(--text-dim); margin-bottom: 20px; padding: 0 20px; max-width: 1400px; margin: 0 auto 20px; }
+    .counter span { color: var(--accent); font-weight: 700; }
 
-    /* GRID DE JUEGOS */
-    .grid-wrap {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 20px 100px;
-    }
+    /* GRID Y TARJETAS (Carrito Gamificado) */
+    .grid-wrap { max-width: 1400px; margin: 0 auto; padding: 0 20px 40px; }
+    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
 
-    #grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 25px;
-    }
-
-    /* TARJETA */
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: fadeIn 0.4s ease both;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      background: var(--surface-hover);
-    }
-
-    .card.disponible:hover { 
-      border-color: var(--accent); 
-      box-shadow: 0 15px 45px rgba(0,0,0,0.5), 0 0 20px var(--glow-cyan); 
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      overflow: hidden; display: flex; flex-direction: column; position: relative;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: fadeIn 0.4s ease both; cursor: pointer;
     }
     
-    .card.no-disponible:hover { 
-      border-color: var(--warning); 
-      box-shadow: 0 15px 45px rgba(0,0,0,0.5), 0 0 20px var(--glow-orange); 
-    }
-
-    .card-img {
-      position: relative;
-      aspect-ratio: 16/7;
-      background: #000;
-      overflow: hidden;
-    }
-
-    .card-img img {
-      width: 100%; 
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s, filter 0.3s;
-    }
-
-    /* Efecto Blanco y Negro para juegos Próximamente */
-    .card.no-disponible .card-img img {
-      filter: grayscale(100%) opacity(0.5);
-    }
-
-    .card:hover .card-img img { 
-      transform: scale(1.1); 
+    /* Estado Seleccionado */
+    .card.selected {
+      border-color: var(--accent); transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,229,255,0.2), 0 0 0 2px var(--accent);
     }
     
-    .card.no-disponible:hover .card-img img {
-      filter: grayscale(70%) opacity(0.8);
+    .card.disponible:hover:not(.selected) { transform: translateY(-5px); background: var(--surface-hover); border-color: rgba(255,255,255,0.3); }
+    .card.no-disponible { cursor: not-allowed; opacity: 0.7; }
+    .card.no-disponible:hover { border-color: var(--warning); transform: none; }
+
+    .card-img { position: relative; aspect-ratio: 16/7; background: #000; overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s, filter 0.3s; }
+    .card.no-disponible .card-img img { filter: grayscale(100%); }
+    .card:hover .card-img img { transform: scale(1.05); }
+
+    .card-img .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, var(--bg) 100%); }
+    
+    /* Overlay Checkmark */
+    .check-overlay {
+      position: absolute; inset: 0; background: rgba(0, 229, 255, 0.15); z-index: 5;
+      display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s;
+    }
+    .card.selected .check-overlay { opacity: 1; }
+    .check-circle { background: var(--accent); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transform: scale(0.5); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .card.selected .check-circle { transform: scale(1); }
+
+    .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; z-index: 2; }
+    .card-name { font-family: 'Rajdhani', sans-serif; font-size: 1.15rem; font-weight: 700; color: #fff; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 12px; min-height: 2.4em; transition: color 0.3s; }
+    .card.selected .card-name { color: var(--accent); }
+
+    .card-meta { display: flex; align-items: center; justify-content: space-between; }
+    .badge { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .badge.ok { background: rgba(0, 230, 118, 0.15); color: var(--success); border: 1px solid rgba(0, 230, 118, 0.3); }
+    .badge.no { background: rgba(240, 165, 0, 0.15); color: var(--warning); border: 1px solid rgba(240, 165, 0, 0.3); }
+    .appid-tag { font-size: 0.7rem; color: var(--text-mute); font-family: monospace; }
+
+    /* --- BOTTOM BAR CHECKOUT (Upsells) --- */
+    .checkout-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13, 18, 32, 0.95);
+      backdrop-filter: blur(15px); border-top: 1px solid var(--border); padding: 15px 24px;
+      display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+      transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+    }
+    .checkout-bar.visible { transform: translateY(0); }
+    
+    .checkout-info { display: flex; flex-direction: column; gap: 4px; }
+    .checkout-upsell { font-size: 1.1rem; color: var(--text); }
+    .checkout-upsell b { color: var(--accent); font-weight: 700; font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; letter-spacing: 0.5px; }
+    
+    .btn-ig {
+      background: var(--ig-gradient); color: #fff; border: none; padding: 14px 28px;
+      border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; gap: 10px; transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 5px 20px rgba(220, 39, 67, 0.3); font-family: 'Inter', sans-serif;
+    }
+    .btn-ig:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(220, 39, 67, 0.5); }
+    .btn-ig svg { width: 22px; height: 22px; fill: currentColor; }
+
+    @media (max-width: 768px) {
+      .checkout-bar { flex-direction: column; gap: 15px; padding: 15px; text-align: center; }
+      .btn-ig { width: 100%; justify-content: center; }
     }
 
-    .card-img .overlay {
-      position: absolute; 
-      inset: 0;
-      background: linear-gradient(180deg, transparent 30%, var(--bg) 100%);
+    /* TOAST ALERTA */
+    .toast-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000;
+      display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s;
     }
-
-    .card-body { 
-      padding: 14px 16px 18px; 
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      justify-content: space-between;
+    .toast-overlay.show { opacity: 1; pointer-events: all; }
+    .toast-modal {
+      background: var(--surface); border: 2px solid var(--accent); border-radius: 20px;
+      padding: 30px; text-align: center; max-width: 400px; transform: scale(0.9); transition: transform 0.3s;
+      box-shadow: 0 20px 50px rgba(0, 229, 255, 0.2);
     }
-
-    .card-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.2;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      margin-bottom: 15px;
-      min-height: 2.4em;
-    }
-
-    .card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .badge.ok { 
-      background: rgba(0, 230, 118, 0.15); 
-      color: var(--success); 
-      border: 1px solid rgba(0, 230, 118, 0.3); 
-    }
-
-    .badge.no { 
-      background: rgba(240, 165, 0, 0.15); 
-      color: var(--warning); 
-      border: 1px solid rgba(240, 165, 0, 0.3); 
-    }
-
-    .appid-tag { 
-      font-size: 0.7rem; 
-      color: var(--text-mute); 
-      font-family: monospace; 
-      background: rgba(255,255,255,0.05);
-      padding: 3px 6px;
-      border-radius: 4px;
-    }
+    .toast-overlay.show .toast-modal { transform: scale(1); }
+    .toast-icon { font-size: 4rem; margin-bottom: 15px; }
+    .toast-title { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 10px; font-weight: 700;}
+    .toast-text { color: var(--text-dim); font-size: 1rem; line-height: 1.4; }
+    .toast-loader { width: 100%; height: 4px; background: var(--surface2); border-radius: 2px; margin-top: 20px; overflow: hidden; }
+    .toast-bar { height: 100%; background: var(--ig-gradient); width: 0%; transition: width 2.5s linear; }
+    .toast-overlay.show .toast-bar { width: 100%; }
 
     /* ESTADOS DE CARGA Y MENSAJES */
-    .state-msg {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 100px 20px;
-    }
-
-    .state-msg .icon { 
-      font-size: 4rem; 
-      margin-bottom: 20px; 
-      opacity: 0.3; 
-      filter: drop-shadow(0 0 20px var(--accent)); 
-    }
-
-    .state-msg h3 { 
-      font-family: 'Rajdhani', sans-serif; 
-      font-size: 1.8rem; 
-      letter-spacing: 2px; 
-      color: #fff; 
-      margin-bottom: 8px; 
-    }
-
-    .state-msg p { 
-      font-size: 0.95rem; 
-      color: var(--text-dim); 
-    }
-
-    .loader { 
-      text-align: center; 
-      padding: 100px; 
-      grid-column: 1/-1; 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .spinner {
-      width: 50px; 
-      height: 50px;
-      border: 4px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px var(--glow-cyan);
-    }
-
-    .loader-text {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--accent);
-      animation: pulse 1.5s ease infinite;
-    }
-
-    /* SCROLL TOP */
-    #scrollTop {
-      position: fixed;
-      bottom: 32px; 
-      right: 32px;
-      z-index: 100;
-      width: 48px; 
-      height: 48px;
-      background: var(--surface2);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0; 
-      transform: translateY(20px);
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      color: var(--text-dim);
-    }
-
-    #scrollTop.visible { 
-      opacity: 1; 
-      transform: translateY(0); 
-    }
+    .state-msg { grid-column: 1 / -1; text-align: center; padding: 80px 20px; }
+    .state-msg .icon { font-size: 4rem; margin-bottom: 20px; opacity: 0.3; filter: drop-shadow(0 0 20px var(--accent)); }
+    .state-msg h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; letter-spacing: 2px; color: #fff; margin-bottom: 8px; }
     
-    #scrollTop:hover { 
-      border-color: var(--accent); 
-      color: var(--accent); 
-      box-shadow: 0 8px 24px var(--glow-cyan);
-      transform: translateY(-4px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 0 20px 40px;
-      color: var(--text-mute);
-      font-size: 0.8rem;
-      letter-spacing: 1px;
-    }
+    .loader { text-align: center; padding: 100px; grid-column: 1/-1; display: flex; flex-direction: column; align-items: center; }
+    .spinner { width: 50px; height: 50px; border: 4px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; box-shadow: 0 0 20px var(--glow-cyan); }
+    .loader-text { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); animation: pulse 1.5s ease infinite; }
 
     @keyframes fadeIn { from { opacity:0; transform:translateY(15px); } to { opacity:1; transform:translateY(0); } }
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
-
-    @media (max-width: 600px) {
-      #grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
-      header { padding: 40px 16px 24px; }
-    }
   </style>
 </head>
 <body>
@@ -463,22 +228,48 @@
     <div class="logo-icon">🎮</div>
     <h1>ZonaSteam</h1>
   </div>
-  <p class="tagline">Catálogo Oficial de Activaciones</p>
+  
+  <div class="hero-cro">
+    <div class="hero-price-banner">🔥 OFERTA: 1x $4.000 | 3x $8.000 | 10x $15.000</div>
+    <div class="hero-steps">
+      <div class="step-item">
+        <div class="step-icon">🛒</div>
+        <div class="step-text"><b>Selecciona</b> tus juegos tocándolos (Arma tu pack)</div>
+      </div>
+      <div class="step-item">
+        <div class="step-icon">📲</div>
+        <div class="step-text"><b>Copia tu lista</b> con un clic y ve a nuestro Instagram</div>
+      </div>
+      <div class="step-item">
+        <div class="step-icon">⚡</div>
+        <div class="step-text"><b>Paga y recibe</b> tu Key para el Gestor Propio al instante</div>
+      </div>
+    </div>
+  </div>
   
   <div class="search-section">
     <div class="search-box">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
         <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
       </svg>
-      <input type="text" id="buscador" placeholder="Buscar juego..." autocomplete="off"/>
+      <input type="text" id="buscador" placeholder="Buscar juego o #AppID..." autocomplete="off"/>
     </div>
   </div>
 </header>
 
-<div class="filters" id="filters">
-  <button class="filter-btn active" data-filter="all">Todos los Juegos</button>
-  <button class="filter-btn" data-filter="disponible">✅ Disponibles</button>
-  <button class="filter-btn" data-filter="no-disponible">⏳ Próximamente</button>
+<div class="filters-wrap">
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-filter="all">Todos los Juegos</button>
+      <button class="filter-btn" data-filter="disponible">✅ Disponibles</button>
+      <button class="filter-btn" data-filter="no-disponible">⏳ Próximamente</button>
+    </div>
+    <div class="sort-box">
+        <select id="sortSelect">
+            <option value="default">✨ Orden Recomendado</option>
+            <option value="az">A - Z (Alfabético)</option>
+            <option value="za">Z - A (Alfabético)</option>
+        </select>
+    </div>
 </div>
 
 <p class="counter" id="counter"></p>
@@ -492,15 +283,35 @@
   </div>
 </div>
 
-<footer>ZonaSteam © 2026 — Sistema de Activaciones Offline</footer>
+<div class="checkout-bar" id="checkout-bar">
+    <div class="checkout-info">
+        <div class="checkout-upsell" id="checkout-text"></div>
+    </div>
+    <button class="btn-ig" onclick="generarPedidoIG()">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.058 3.252.148 4.771 1.691 4.919 4.919.046 1.265.058 1.645.058 4.859 0 3.214-.012 3.594-.058 4.859-.148 3.227-1.668 4.771-4.919 4.919-1.266.046-1.646.058-4.85.058-3.204 0-3.584-.012-4.85-.058-3.252-.148-4.771-1.691-4.919-4.919-.046-1.265-.058-1.645-.058-4.859 0-3.214.012-3.594.058-4.859.148-3.227 1.668-4.771 4.919-4.919 1.266-.046 1.646-.058 4.85-.058zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Copiar pedido y pedir por IG 🚀
+    </button>
+</div>
 
-<button id="scrollTop" title="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M18 15l-6-6-6 6"/>
-  </svg>
-</button>
+<div class="toast-overlay" id="toast-ig">
+    <div class="toast-modal">
+        <div class="toast-icon">📋</div>
+        <div class="toast-title">¡Lista Copiada!</div>
+        <div class="toast-text">Ahora pega el mensaje en nuestro chat de Instagram. Abriendo chat en breve...</div>
+        <div class="toast-loader"><div class="toast-bar"></div></div>
+    </div>
+</div>
+
+<footer>ZonaSteam © 2026 — Catálogo de Compras Interactivo</footer>
 
 <script>
+  // =======================================================
+  // ⚠️ VARIABLE IMPORTANTE: REEMPLAZA CON TU USUARIO DE IG
+  // =======================================================
+  const IG_USER = "zonasteam.store"; 
+  
   const PAGE_SIZE = 60;
   const STEAM_IMG = id => `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg`;
 
@@ -509,53 +320,41 @@
   let paginaActual = 0;
   let filtroActivo = 'all';
   let queryActual  = '';
+  let sortBy       = 'default';
   let cargandoMas  = false;
   let searchTimer  = null;
+
+  // Lógica del Carrito
+  let juegosSeleccionados = new Map(); // appid -> nombre
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('q')) {
+      const queryUrl = params.get('q');
+      document.getElementById('buscador').value = queryUrl;
+      queryActual = queryUrl;
+    }
+    cargar();
+  });
 
   async function cargar() {
     try {
       let data = null;
 
-      // 1. INTENTO PRINCIPAL: Usamos la API de GitHub para obtener los cambios al instante.
-      // Al usar "application/vnd.github.v3.raw", GitHub nos da el archivo saltándose el caché.
       try {
         const apiResponse = await fetch('https://api.github.com/repos/zonasteamstore-gif/catalogo/contents/catalogo.json', {
-          headers: {
-            'Accept': 'application/vnd.github.v3.raw',
-            'Cache-Control': 'no-cache'
-          }
+          headers: { 'Accept': 'application/vnd.github.v3.raw', 'Cache-Control': 'no-cache' }
         });
-        
-        if (apiResponse.ok) {
-          data = await apiResponse.json();
-          console.log("Catálogo cargado al instante desde la API.");
-        }
-      } catch (error) {
-        // Ignoramos el error silenciosamente, esto ocurre si pasamos el límite de peticiones de la API.
-      }
+        if (apiResponse.ok) data = await apiResponse.json();
+      } catch (error) {}
 
-      // 2. PLAN B (FALLBACK SEGURO): Si el intento 1 falló por límite de peticiones (60/hora),
-      // pedimos el archivo por el CDN normal. Nunca dejará al usuario con la pantalla vacía.
       if (!data) {
-        const cdnResponse = await fetch('https://raw.githubusercontent.com/zonasteamstore-gif/catalogo/main/catalogo.json?t=' + Date.now(), {
-          cache: 'no-store'
-        });
-        
-        if (cdnResponse.ok) {
-          data = await cdnResponse.json();
-          console.log("Catálogo cargado desde el CDN (Plan B activado).");
-        }
+        const cdnResponse = await fetch('https://raw.githubusercontent.com/zonasteamstore-gif/catalogo/main/catalogo.json?t=' + Date.now(), { cache: 'no-store' });
+        if (cdnResponse.ok) data = await cdnResponse.json();
       }
 
-      // 3. Si logramos obtener los datos por cualquiera de las 2 vías, los procesamos.
       if (data && Array.isArray(data)) {
-        todosJuegos = data.map(j => {
-          const appid = j[0];
-          const nombre = j[1];
-          const disponible = j[2] === 1; // 1 = Disponible, 0 = Próximamente
-          
-          return [appid, nombre, disponible];
-        });
+        todosJuegos = data.map(j => [j[0], j[1], j[2] === 1]);
       }
 
       if (todosJuegos.length === 0) {
@@ -567,12 +366,13 @@
       
     } catch(e) {
       mostrarVacio('Error de conexión', 'No se pudo obtener el catálogo desde los servidores.');
-      console.error(e);
     }
   }
 
   function aplicarFiltros() {
     const q = queryActual.toLowerCase().trim();
+    const isAppIdSearch = q.startsWith('#');
+    const cleanQ = isAppIdSearch ? q.substring(1).trim() : q;
     
     filtrados = todosJuegos.filter(j => {
       const matchFiltro =
@@ -580,10 +380,18 @@
         filtroActivo === 'disponible' ? j[2] === true : 
         filtroActivo === 'no-disponible' ? j[2] === false : true;
         
-      const matchQuery = q.length < 2 || j[1].toLowerCase().includes(q);
+      const matchQuery = q.length < 1 ? true : 
+                         (isAppIdSearch ? String(j[0]) === cleanQ : j[1].toLowerCase().includes(q));
       
       return matchFiltro && matchQuery;
     });
+
+    // Lógica de Ordenamiento A-Z
+    if (sortBy === 'az') {
+        filtrados.sort((a, b) => a[1].localeCompare(b[1]));
+    } else if (sortBy === 'za') {
+        filtrados.sort((a, b) => b[1].localeCompare(a[1]));
+    }
     
     paginaActual = 0;
     document.getElementById('grid').innerHTML = '';
@@ -596,10 +404,7 @@
     const noDisp = filtrados.filter(j => j[2] === false).length;
     const el = document.getElementById('counter');
     
-    if (filtrados.length === 0) { 
-      el.innerHTML = 'Sin coincidencias para la búsqueda.'; 
-      return; 
-    }
+    if (filtrados.length === 0) { el.innerHTML = 'Sin coincidencias para la búsqueda.'; return; }
     
     el.innerHTML =
       `Viendo <span>${filtrados.length.toLocaleString()}</span> juegos — ` +
@@ -621,13 +426,21 @@
     chunk.forEach((j, idx) => {
       const appid = j[0];
       const nombre = j[1];
-      const disponible = j[2]; // true o false
-      
+      const disponible = j[2];
+      const isSelected = juegosSeleccionados.has(appid);
+
       const card = document.createElement('div');
-      card.className = `card ${disponible ? 'disponible' : 'no-disponible'}`;
+      card.className = `card ${disponible ? 'disponible' : 'no-disponible'} ${isSelected ? 'selected' : ''}`;
       card.style.animationDelay = `${(idx % PAGE_SIZE) * 15}ms`;
+      card.id = `card-${appid}`;
+      
+      // Lógica de Selección (Gamificación)
+      if (disponible) {
+          card.onclick = () => toggleSeleccion(appid, nombre, card);
+      }
       
       card.innerHTML = `
+        <div class="check-overlay"><div class="check-circle">✅</div></div>
         <div class="card-img">
           <img src="${STEAM_IMG(appid)}" alt="${esc(nombre)}" loading="lazy"
             onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\'><svg width=\\'32\\' height=\\'32\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.5\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'3\\'/><circle cx=\\'9\\' cy=\\'9\\' r=\\'2\\'/><path d=\\'m21 15-5-5L5 21\\'/></svg></div>'"/>
@@ -635,8 +448,8 @@
         </div>
         <div class="card-body">
           <div class="card-name" title="${esc(nombre)}">${esc(nombre)}</div>
-          <div class="card-footer">
-            <span class="badge ${disponible ? 'ok' : 'no'}">${disponible ? '✅ Disponible' : '⏳ Próximamente'}</span>
+          <div class="card-meta">
+            <span class="badge ${disponible ? 'ok' : 'no'}">${disponible ? '✅ Disp.' : '⏳ Próx.'}</span>
             <span class="appid-tag">#${appid}</span>
           </div>
         </div>`;
@@ -647,43 +460,86 @@
     paginaActual++;
   }
 
+  // Interacción de Selección
+  function toggleSeleccion(appid, nombre, cardElement) {
+      if (juegosSeleccionados.has(appid)) {
+          juegosSeleccionados.delete(appid);
+          cardElement.classList.remove('selected');
+      } else {
+          juegosSeleccionados.set(appid, nombre);
+          cardElement.classList.add('selected');
+      }
+      actualizarBottomBar();
+  }
+
+  // Actualizar Upsells en Bottom Bar
+  function actualizarBottomBar() {
+      const count = juegosSeleccionados.size;
+      const bar = document.getElementById('checkout-bar');
+      const textEl = document.getElementById('checkout-text');
+
+      if (count === 0) {
+          bar.classList.remove('visible');
+          return;
+      }
+      
+      bar.classList.add('visible');
+
+      if (count === 1) {
+          textEl.innerHTML = `<b>1 juego ($4.000)</b>. ¡Agrega 2 más por solo $4.000 extra!`;
+      } else if (count === 2) {
+          textEl.innerHTML = `<b>2 juegos ($8.000)</b>. ¡El 3er juego es GRATIS! Agrégalo.`;
+      } else if (count === 3) {
+          textEl.innerHTML = `<b>¡Pack de 3 alcanzado! ($8.000)</b> 🔥`;
+      } else if (count > 3 && count < 10) {
+          textEl.innerHTML = `<b>${count} juegos</b>. ¡Llega a 10 por $15.000!`;
+      } else if (count >= 10) {
+          textEl.innerHTML = `<b>¡Pack Mayorista de ${count} juegos!</b> 🔥`;
+      }
+  }
+
+  // Generar y Copiar Pedido
+  function generarPedidoIG() {
+      let txt = "Hola Zonasteam, quiero armar este pack:\n";
+      juegosSeleccionados.forEach((nombre) => {
+          txt += `- ${nombre}\n`;
+      });
+
+      navigator.clipboard.writeText(txt).then(() => {
+          const toast = document.getElementById('toast-ig');
+          toast.classList.add('show');
+          
+          // Redirigir después de la animación de la barra (2.5s)
+          setTimeout(() => {
+              toast.classList.remove('show');
+              window.open(`https://ig.me/m/${IG_USER}`, '_blank');
+          }, 2500);
+      }).catch(err => {
+          alert("No se pudo copiar automáticamente. Por favor revisa permisos.");
+      });
+  }
+
+  // Listeners de Eventos
+  document.getElementById('sortSelect').addEventListener('change', e => {
+      sortBy = e.target.value;
+      aplicarFiltros();
+  });
+
   window.addEventListener('scroll', () => {
-    const st = document.getElementById('scrollTop');
-    if (window.scrollY > 400) {
-      st.classList.add('visible');
-    } else {
-      st.classList.remove('visible');
-    }
-    
-    if (cargandoMas) return;
-    if (paginaActual * PAGE_SIZE >= filtrados.length) return;
-    
+    if (cargandoMas || paginaActual * PAGE_SIZE >= filtrados.length) return;
     if (window.scrollY + window.innerHeight > document.documentElement.scrollHeight - 800) {
-      cargandoMas = true;
-      setTimeout(() => { 
-        renderPagina(); 
-        cargandoMas = false; 
-      }, 50);
+      cargandoMas = true; setTimeout(() => { renderPagina(); cargandoMas = false; }, 50);
     }
   });
 
   document.getElementById('buscador').addEventListener('input', e => {
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => { 
-      queryActual = e.target.value; 
-      aplicarFiltros(); 
-    }, 250);
+    clearTimeout(searchTimer); searchTimer = setTimeout(() => { queryActual = e.target.value; aplicarFiltros(); }, 250);
   });
 
   document.getElementById('filters').addEventListener('click', e => {
-    const btn = e.target.closest('.filter-btn');
-    if (!btn) return;
-    
+    if (!e.target.closest('.filter-btn')) return;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    
-    filtroActivo = btn.dataset.filter;
-    aplicarFiltros();
+    e.target.classList.add('active'); filtroActivo = e.target.dataset.filter; aplicarFiltros();
   });
 
   function esc(s) {
@@ -692,17 +548,9 @@
   }
 
   function mostrarVacio(titulo, sub) {
-    document.getElementById('grid').innerHTML = `
-      <div class="state-msg">
-        <div class="icon">🎮</div>
-        <h3>${titulo}</h3>
-        <p>${sub}</p>
-      </div>`;
+    document.getElementById('grid').innerHTML = `<div class="state-msg"><div class="icon">🎮</div><h3>${titulo}</h3><p>${sub}</p></div>`;
     document.getElementById('counter').innerHTML = '';
   }
-
-  // Inicializar carga
-  cargar();
 </script>
 </body>
 </html>
