@@ -24,13 +24,14 @@
       --glow-cyan:    rgba(0, 229, 255, 0.3);
       --glow-orange:  rgba(240, 165, 0, 0.15);
       --ig-gradient:  linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      --whatsapp:     #25D366;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif;
-      min-height: 100vh; overflow-x: hidden; position: relative; padding-bottom: 90px; /* Espacio para el bottom bar */
+      min-height: 100vh; overflow-x: hidden; position: relative; padding-bottom: 100px; 
     }
 
     /* Fondo animado sutil */
@@ -60,7 +61,7 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(0, 229, 255, 0.2); margin: 0;
     }
 
-    /* --- HERO SECTION CRO (Cómo Funciona + Oferta) --- */
+    /* --- HERO SECTION CRO (Gamificada Mobile-First) --- */
     .hero-cro {
       max-width: 700px; margin: 0 auto 20px; background: rgba(0, 229, 255, 0.03);
       border: 1px solid rgba(0, 229, 255, 0.15); border-radius: 16px; overflow: hidden;
@@ -69,7 +70,7 @@
     .hero-price-banner {
       background: linear-gradient(90deg, rgba(0, 119, 255, 0.2), rgba(0, 229, 255, 0.2));
       padding: 12px 20px; border-bottom: 1px solid rgba(0, 229, 255, 0.1);
-      font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+      font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
     }
     .hero-steps {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 20px; text-align: left;
@@ -77,13 +78,6 @@
     .step-item { display: flex; flex-direction: column; gap: 8px; align-items: center; text-align: center; }
     .step-icon { font-size: 1.8rem; background: var(--surface2); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
     .step-text { font-size: 0.85rem; color: var(--text); font-weight: 500; line-height: 1.3; }
-
-    @media (max-width: 600px) {
-      .hero-steps { grid-template-columns: 1fr; gap: 12px; padding: 15px; }
-      .step-item { flex-direction: row; text-align: left; background: var(--surface2); padding: 10px; border-radius: 10px; }
-      .step-icon { width: 36px; height: 36px; font-size: 1.2rem; flex-shrink: 0; }
-      .hero-price-banner { font-size: 1.1rem; }
-    }
 
     /* BUSCADOR */
     .search-section { max-width: 680px; margin: 0 auto; padding: 0 20px; }
@@ -94,8 +88,9 @@
     #buscador:focus + svg { color: var(--accent); }
     #buscador::placeholder { color: var(--text-mute); }
 
-    /* FILTROS Y ORDENAMIENTO */
+    /* FILTROS Y ORDENAMIENTO (Optimizado Mobile) */
     .filters-wrap { max-width: 1400px; margin: 0 auto; padding: 25px 20px 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; }
+    
     .filters { 
       display: flex; gap: 10px; 
       overflow-x: auto; 
@@ -106,6 +101,7 @@
       scrollbar-width: none; 
     }
     .filters::-webkit-scrollbar { display: none; }
+
     .filter-btn { padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; flex-shrink: 0; }
     .filter-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
     .filter-btn.active { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--glow-cyan); border-color: var(--accent); }
@@ -133,9 +129,10 @@
       animation: fadeIn 0.4s ease both; cursor: pointer; user-select: none;
     }
     
-    /* Estado Seleccionado */
+    /* Estado Seleccionado (Gamificación) */
     .card.selected {
-      border-color: var(--accent); transform: translateY(-5px);
+      border-color: var(--accent); 
+      transform: translateY(-5px);
       background: rgba(0, 229, 255, 0.05);
       box-shadow: 0 10px 30px rgba(0,229,255,0.2), 0 0 0 1px var(--accent);
     }
@@ -192,35 +189,45 @@
     }
     .btn-checkout:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(0, 229, 255, 0.5); }
 
-    /* --- MODAL ANTI-FALLAS (Acción de Conversión) --- */
-    .ig-modal-overlay {
+    /* --- MODAL ANTI-FALLAS (Acción de Conversión Doble Canal) --- */
+    .conversion-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000;
       display: flex; align-items: center; justify-content: center; opacity: 0; 
       pointer-events: none; transition: opacity 0.3s ease; backdrop-filter: blur(5px);
     }
-    .ig-modal-overlay.show { opacity: 1; pointer-events: all; }
+    .conversion-overlay.show { opacity: 1; pointer-events: all; }
     
-    .ig-modal {
+    .conversion-modal {
       background: var(--surface); border: 2px solid var(--accent); border-radius: 20px;
-      padding: 30px 20px; text-align: center; width: 90%; max-width: 400px;
+      padding: 30px 20px; text-align: center; width: 90%; max-width: 420px;
       transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       box-shadow: 0 20px 50px rgba(0, 229, 255, 0.15);
     }
-    .ig-modal-overlay.show .ig-modal { transform: scale(1); }
+    .conversion-overlay.show .conversion-modal { transform: scale(1); }
     
-    .ig-modal .icon { font-size: 4rem; margin-bottom: 10px; }
-    .ig-modal h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
-    .ig-modal p { color: var(--text-dim); font-size: 1rem; line-height: 1.4; margin-bottom: 25px; }
+    .conversion-modal .icon { font-size: 3.5rem; margin-bottom: 10px; }
+    .conversion-modal h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
+    .conversion-modal p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.4; margin-bottom: 20px; }
     
     .btn-ig-giant {
       display: flex; align-items: center; justify-content: center; gap: 10px;
       background: var(--ig-gradient); color: #fff; text-decoration: none;
       padding: 15px; border-radius: 12px; font-size: 1.1rem; font-weight: 700;
       min-height: 50px; width: 100%; transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 5px 20px rgba(220, 39, 67, 0.3);
+      box-shadow: 0 5px 20px rgba(220, 39, 67, 0.3); margin-bottom: 10px;
     }
     .btn-ig-giant:active { transform: scale(0.95); }
     .btn-ig-giant svg { width: 24px; height: 24px; fill: currentColor; }
+
+    .btn-wa-giant {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--whatsapp); color: #fff; text-decoration: none;
+      padding: 15px; border-radius: 12px; font-size: 1.1rem; font-weight: 700;
+      min-height: 50px; width: 100%; transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+    }
+    .btn-wa-giant:active { transform: scale(0.95); }
+    .btn-wa-giant svg { width: 24px; height: 24px; fill: currentColor; }
 
     /* ESTADOS DE CARGA Y MENSAJES */
     .state-msg { grid-column: 1 / -1; text-align: center; padding: 80px 20px; }
@@ -241,16 +248,23 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
 
-    /* --- OPTIMIZACIONES MOBILE FIRST --- */
+    /* --- OPTIMIZACIONES MOBILE FIRST CRÍTICAS --- */
     @media (max-width: 600px) {
-      /* Ajuste de grilla a 2 columnas */
+      header { padding: 40px 16px 20px; }
+      
+      .hero-steps { grid-template-columns: 1fr; gap: 10px; padding: 15px; }
+      .step-item { flex-direction: row; text-align: left; background: var(--surface2); padding: 12px; border-radius: 10px; }
+      .step-icon { width: 40px; height: 40px; font-size: 1.3rem; flex-shrink: 0; }
+      .hero-price-banner { font-size: 1.15rem; }
+
+      /* Grilla a 2 columnas Mobile-First */
       #grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .card-name { font-size: 0.95rem; min-height: 2.6em; margin-bottom: 8px; }
       .card-body { padding: 10px; }
       .card-meta { flex-direction: column; align-items: flex-start; gap: 6px; }
       .badge { font-size: 0.65rem; padding: 3px 6px; }
 
-      /* Bottom Bar Compacta (< 15% altura) */
+      /* Bottom Bar súper compacta */
       .checkout-bar { padding: 12px; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px; border-top-left-radius: 16px; border-top-right-radius: 16px;}
       .checkout-info { flex: 1 1 100%; text-align: center; }
       .checkout-upsell { font-size: 0.9rem; line-height: 1.2; }
@@ -282,7 +296,7 @@
       </div>
       <div class="step-item">
         <div class="step-icon">⚡</div>
-        <div class="step-text"><b>3) Paga en IG</b> y recibe tu Key al instante.</div>
+        <div class="step-text"><b>3) Paga en el chat</b> y recibe tu Key al instante.</div>
       </div>
     </div>
   </div>
@@ -328,24 +342,32 @@
     <div class="checkout-info">
         <div class="checkout-upsell" id="checkout-text"></div>
     </div>
-    <button class="btn-checkout" onclick="generarPedidoIG()">
+    <button class="btn-checkout" onclick="generarPedido()">
         Generar Pedido 🚀
     </button>
 </div>
 
-<div class="ig-modal-overlay" id="modal-ig-conversion">
-    <div class="ig-modal">
-        <div class="icon">📋</div>
-        <h2>✅ ¡Lista copiada!</h2>
-        <p>Toca el botón de abajo, ve a nuestro chat de Instagram y pon <b>PEGAR</b> para enviarnos tu pedido.</p>
+<div class="conversion-overlay" id="modal-conversion">
+    <div class="conversion-modal">
+        <div class="icon">✅</div>
+        <h2>¡Pedido copiado!</h2>
+        <p>Tu lista ya está en el portapapeles. Elige por dónde enviarla y pon <b>PEGAR</b> en el chat.</p>
         
-        <a href="#" class="btn-ig-giant" id="btn-open-ig" target="_blank" onclick="cerrarModalIG()">
+        <a href="#" class="btn-wa-giant" id="btn-open-wa" target="_blank" onclick="cerrarModal()">
+            <svg viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+            Enviar por WhatsApp
+        </a>
+
+        <a href="#" class="btn-ig-giant" id="btn-open-ig" target="_blank" onclick="cerrarModal()">
             <svg viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.058 3.252.148 4.771 1.691 4.919 4.919.046 1.265.058 1.645.058 4.859 0 3.214-.012 3.594-.058 4.859-.148 3.227-1.668 4.771-4.919 4.919-1.266.046-1.646.058-4.85.058-3.204 0-3.584-.012-4.85-.058-3.252-.148-4.771-1.691-4.919-4.919-.046-1.265-.058-1.645-.058-4.859 0-3.214.012-3.594.058-4.859.148-3.227 1.668-4.771 4.919-4.919 1.266-.046 1.646-.058 4.85-.058zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
-            👉 Abrir Instagram y Pegar
+            Enviar por Instagram
         </a>
-        <button class="filter-btn" style="margin-top:15px; width:100%" onclick="cerrarModalIG()">Cerrar</button>
+
+        <button class="filter-btn" style="margin-top:10px; width:100%" onclick="cerrarModal()">Cerrar</button>
     </div>
 </div>
 
@@ -359,9 +381,10 @@
 
 <script>
   // =======================================================
-  // ⚠️ VARIABLE IMPORTANTE: REEMPLAZA CON TU USUARIO DE IG
+  // ⚠️ VARIABLES IMPORTANTES: REEMPLAZA CON TUS DATOS REALES
   // =======================================================
   const TU_USUARIO_IG = "zonasteam.store"; 
+  const TU_NUMERO_WA  = "5493816502549"; // Formato: sin '+' ni espacios
   
   const PAGE_SIZE = 60;
   const STEAM_IMG = id => `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg`;
@@ -379,21 +402,6 @@
   let juegosSeleccionados = new Map(); // appid -> nombre
 
   window.addEventListener('DOMContentLoaded', () => {
-    // Configurar enlace del Modal de Instagram con Deep Linking (Detección de Dispositivo)
-    const btnIg = document.getElementById('btn-open-ig');
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        // Enlace nativo para iOS
-        btnIg.href = `instagram://user?username=${TU_USUARIO_IG}`;
-    } else if (/android/i.test(userAgent)) {
-        // Enlace nativo (Intent) para Android
-        btnIg.href = `intent://instagram.com/_u/${TU_USUARIO_IG}/#Intent;package=com.instagram.android;scheme=https;end`;
-    } else {
-        // Enlace web para PC/Desktop
-        btnIg.href = `https://ig.me/m/${TU_USUARIO_IG}`;
-    }
-
     const params = new URLSearchParams(window.location.search);
     if (params.has('q')) {
       const queryUrl = params.get('q');
@@ -552,34 +560,63 @@
       bar.classList.add('visible');
 
       if (count === 1) {
-          textEl.innerHTML = `<b>1 juego ($4k)</b>. ¡Suma 2 más por $4k!`;
+          textEl.innerHTML = `<b>1 juego ($4k)</b>. ¡Suma 2 más y el 3ro es GRATIS!`;
       } else if (count === 2) {
-          textEl.innerHTML = `<b>2 juegos ($8k)</b>. ¡El 3ro es GRATIS!`;
+          textEl.innerHTML = `<b>2 juegos ($8k)</b>. ¡Solo 1 más para el Pack de 3!`;
       } else if (count === 3) {
-          textEl.innerHTML = `<b>¡Pack de 3! ($8k)</b> 🔥`;
+          textEl.innerHTML = `<b>¡Pack de 3 alcanzado! ($8k)</b> 🔥`;
       } else if (count > 3 && count < 10) {
           textEl.innerHTML = `<b>${count} juegos</b>. ¡Llega a 10 por $15k!`;
       } else if (count >= 10) {
-          textEl.innerHTML = `<b>¡Pack de ${count} juegos!</b> 🔥`;
+          textEl.innerHTML = `<b>¡Pack Mayorista de ${count} juegos!</b> 🔥`;
       }
   }
 
-  // Generar Pedido y mostrar Modal de IG (La Acción de Conversión)
-  function generarPedidoIG() {
+  // Lógica Maestra de Deep Linking
+  function configurarEnlacesDeepLinking(mensaje) {
+      const btnIg = document.getElementById('btn-open-ig');
+      const btnWa = document.getElementById('btn-open-wa');
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      
+      // Codificamos el mensaje para la URL
+      const encodedMsg = encodeURIComponent(mensaje);
+
+      // --- DEEP LINK INSTAGRAM ---
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          // iOS
+          btnIg.href = `instagram://direct_share?username=${TU_USUARIO_IG}`;
+      } else if (/android/i.test(userAgent)) {
+          // Android
+          btnIg.href = `intent://ig.me/m/${TU_USUARIO_IG}/#Intent;package=com.instagram.android;scheme=https;end`;
+      } else {
+          // Desktop
+          btnIg.href = `https://ig.me/m/${TU_USUARIO_IG}`;
+      }
+
+      // --- DEEP LINK WHATSAPP ---
+      btnWa.href = `https://api.whatsapp.com/send?phone=${TU_NUMERO_WA}&text=${encodedMsg}`;
+  }
+
+  // Generar Pedido y mostrar Modal (La Acción de Conversión)
+  function generarPedido() {
       let txt = "Hola Zonasteam, quiero armar este pack:\n";
       juegosSeleccionados.forEach((nombre) => {
           txt += `- ${nombre}\n`;
       });
 
+      // Configurar los botones del modal con el texto armado
+      configurarEnlacesDeepLinking(txt);
+
+      // Copiar al portapapeles y abrir Modal
       navigator.clipboard.writeText(txt).then(() => {
-          document.getElementById('modal-ig-conversion').classList.add('show');
+          document.getElementById('modal-conversion').classList.add('show');
       }).catch(err => {
           alert("Por favor, permite el acceso al portapapeles para copiar tu pedido automáticamente.");
       });
   }
   
-  function cerrarModalIG() {
-      document.getElementById('modal-ig-conversion').classList.remove('show');
+  function cerrarModal() {
+      document.getElementById('modal-conversion').classList.remove('show');
   }
 
   // Listeners de Eventos
