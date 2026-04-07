@@ -3,11 +3,41 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ZonaSteam — Catálogo Premium</title>
+  
+  <title id="page-title">ZonaSteam — Catálogo Premium</title>
+  <meta name="description" id="meta-desc" content="Juegos a $4.000. Compra rápida y segura."/>
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zonasteamstore.com/">
+  <meta property="og:title" id="og-title" content="ZonaSteam — Catálogo Premium">
+  <meta property="og:description" id="og-desc" content="Juegos a $4.000. Compra rápida y segura.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop"> <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="tw-title" content="ZonaSteam — Catálogo Premium">
+  <meta name="twitter:description" id="tw-desc" content="Juegos a $4.000. Compra rápida y segura.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop">
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'XXXXXXXXXXXXXXX');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  
   <style>
     :root {
-      /* Paleta de colores profunda y elegante (Intacta) */
       --bg:           #05080f;
       --surface:      rgba(13, 18, 32, 0.7);
       --surface-hover:rgba(20, 28, 48, 0.9);
@@ -34,7 +64,6 @@
       min-height: 100vh; overflow-x: hidden; position: relative; padding-bottom: 100px; 
     }
 
-    /* Fondo animado sutil */
     body::before {
       content: ''; position: fixed; inset: 0;
       background: radial-gradient(circle 800px at 50% -20%, rgba(0, 119, 255, 0.15), transparent),
@@ -44,24 +73,33 @@
 
     /* HEADER */
     header {
-      position: relative; z-index: 10; padding: 40px 24px 20px; text-align: center;
+      position: relative; z-index: 10; padding: 20px 24px 20px; text-align: center;
       backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
       background: linear-gradient(180deg, rgba(0, 119, 255, 0.05) 0%, transparent 100%);
     }
 
-    .logo { display: inline-flex; align-items: center; gap: 16px; margin-bottom: 15px; cursor: default; }
+    .header-top { max-width: 1400px; margin: 0 auto 15px; display: flex; justify-content: space-between; align-items: center; }
+    
+    .logo { display: inline-flex; align-items: center; gap: 16px; cursor: default; }
     .logo-icon {
-      width: 52px; height: 52px; background: linear-gradient(135deg, var(--accent-dark), var(--accent));
-      border-radius: 14px; display: flex; align-items: center; justify-content: center;
-      font-size: 28px; box-shadow: 0 0 25px var(--glow-cyan); border: 1px solid rgba(0, 229, 255, 0.4); text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      width: 44px; height: 44px; background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 24px; box-shadow: 0 0 25px var(--glow-cyan); border: 1px solid rgba(0, 229, 255, 0.4); text-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
     h1 {
-      font-family: 'Rajdhani', sans-serif; font-size: clamp(2.4rem, 6vw, 3.8rem); font-weight: 700;
-      letter-spacing: 4px; background: linear-gradient(to bottom right, #ffffff, #8be9fd);
+      font-family: 'Rajdhani', sans-serif; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 700;
+      letter-spacing: 3px; background: linear-gradient(to bottom right, #ffffff, #8be9fd);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(0, 229, 255, 0.2); margin: 0;
     }
 
-    /* --- HERO SECTION CRO (Gamificada Mobile-First) --- */
+    .lang-btn {
+      background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+      padding: 8px 14px; border-radius: 10px; font-family: 'Inter', sans-serif; font-weight: 600;
+      font-size: 0.9rem; cursor: pointer; transition: all 0.3s;
+    }
+    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* HERO SECTION */
     .hero-cro {
       max-width: 700px; margin: 0 auto 20px; background: rgba(0, 229, 255, 0.03);
       border: 1px solid rgba(0, 229, 255, 0.15); border-radius: 16px; overflow: hidden;
@@ -72,9 +110,7 @@
       padding: 12px 20px; border-bottom: 1px solid rgba(0, 229, 255, 0.1);
       font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
     }
-    .hero-steps {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 20px; text-align: left;
-    }
+    .hero-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 20px; text-align: left; }
     .step-item { display: flex; flex-direction: column; gap: 8px; align-items: center; text-align: center; }
     .step-icon { font-size: 1.8rem; background: var(--surface2); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
     .step-text { font-size: 0.85rem; color: var(--text); font-weight: 500; line-height: 1.3; }
@@ -88,20 +124,10 @@
     #buscador:focus + svg { color: var(--accent); }
     #buscador::placeholder { color: var(--text-mute); }
 
-    /* FILTROS Y ORDENAMIENTO (Optimizado Mobile) */
+    /* FILTROS Y ORDENAMIENTO */
     .filters-wrap { max-width: 1400px; margin: 0 auto; padding: 25px 20px 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; }
-    
-    .filters { 
-      display: flex; gap: 10px; 
-      overflow-x: auto; 
-      white-space: nowrap; 
-      flex-wrap: nowrap;
-      padding-bottom: 5px; 
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; 
-    }
+    .filters { display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; flex-wrap: nowrap; padding-bottom: 5px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .filters::-webkit-scrollbar { display: none; }
-
     .filter-btn { padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; flex-shrink: 0; }
     .filter-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
     .filter-btn.active { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--glow-cyan); border-color: var(--accent); }
@@ -118,7 +144,7 @@
     .counter { text-align: left; font-size: 0.9rem; color: var(--text-dim); margin-bottom: 20px; padding: 0 20px; max-width: 1400px; margin: 0 auto 20px; }
     .counter span { color: var(--accent); font-weight: 700; }
 
-    /* GRID Y TARJETAS (Carrito Gamificado) */
+    /* GRID Y TARJETAS */
     .grid-wrap { max-width: 1400px; margin: 0 auto; padding: 0 20px 40px; }
     #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
 
@@ -128,15 +154,7 @@
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       animation: fadeIn 0.4s ease both; cursor: pointer; user-select: none;
     }
-    
-    /* Estado Seleccionado (Gamificación) */
-    .card.selected {
-      border-color: var(--accent); 
-      transform: translateY(-5px);
-      background: rgba(0, 229, 255, 0.05);
-      box-shadow: 0 10px 30px rgba(0,229,255,0.2), 0 0 0 1px var(--accent);
-    }
-    
+    .card.selected { border-color: var(--accent); transform: translateY(-5px); background: rgba(0, 229, 255, 0.05); box-shadow: 0 10px 30px rgba(0,229,255,0.2), 0 0 0 1px var(--accent); }
     .card.disponible:hover:not(.selected) { transform: translateY(-5px); background: var(--surface-hover); border-color: rgba(255,255,255,0.3); }
     .card.no-disponible { cursor: not-allowed; opacity: 0.6; }
     .card.no-disponible:hover { border-color: var(--border); transform: none; }
@@ -147,12 +165,7 @@
     .card:hover .card-img img { transform: scale(1.05); }
 
     .card-img .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, var(--bg) 100%); }
-    
-    /* Overlay Checkmark */
-    .check-overlay {
-      position: absolute; inset: 0; background: rgba(0, 229, 255, 0.2); z-index: 5;
-      display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;
-    }
+    .check-overlay { position: absolute; inset: 0; background: rgba(0, 229, 255, 0.2); z-index: 5; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
     .card.selected .check-overlay { opacity: 1; }
     .check-circle { background: var(--accent); color: #000; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 15px rgba(0,0,0,0.6); transform: scale(0.5); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     .card.selected .check-circle { transform: scale(1); }
@@ -167,7 +180,7 @@
     .badge.no { background: rgba(240, 165, 0, 0.15); color: var(--warning); border: 1px solid rgba(240, 165, 0, 0.3); }
     .appid-tag { font-size: 0.7rem; color: var(--text-mute); font-family: monospace; }
 
-    /* --- BOTTOM BAR CHECKOUT (Upsells dinámicos) --- */
+    /* BOTTOM BAR CHECKOUT */
     .checkout-bar {
       position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13, 18, 32, 0.95);
       backdrop-filter: blur(15px); border-top: 1px solid var(--accent); padding: 15px 24px;
@@ -189,7 +202,7 @@
     }
     .btn-checkout:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(0, 229, 255, 0.5); }
 
-    /* --- MODAL ANTI-FALLAS (Acción de Conversión Doble Canal) --- */
+    /* MODAL ANTI-FALLAS */
     .conversion-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000;
       display: flex; align-items: center; justify-content: center; opacity: 0; 
@@ -217,7 +230,7 @@
       box-shadow: 0 5px 20px rgba(220, 39, 67, 0.3); margin-bottom: 10px;
     }
     .btn-ig-giant:active { transform: scale(0.95); }
-    .btn-ig-giant svg { width: 24px; height: 24px; fill: currentColor; }
+    .btn-ig-giant svg, .btn-wa-giant svg { width: 24px; height: 24px; fill: currentColor; }
 
     .btn-wa-giant {
       display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -227,9 +240,8 @@
       box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
     }
     .btn-wa-giant:active { transform: scale(0.95); }
-    .btn-wa-giant svg { width: 24px; height: 24px; fill: currentColor; }
 
-    /* ESTADOS DE CARGA Y MENSAJES */
+    /* ESTADOS DE CARGA Y SCROLL */
     .state-msg { grid-column: 1 / -1; text-align: center; padding: 80px 20px; }
     .state-msg .icon { font-size: 4rem; margin-bottom: 20px; opacity: 0.3; filter: drop-shadow(0 0 20px var(--accent)); }
     .state-msg h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; letter-spacing: 2px; color: #fff; margin-bottom: 8px; }
@@ -238,7 +250,6 @@
     .spinner { width: 50px; height: 50px; border: 4px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; box-shadow: 0 0 20px var(--glow-cyan); }
     .loader-text { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); animation: pulse 1.5s ease infinite; }
 
-    /* SCROLL TOP */
     #scrollTop { position: fixed; bottom: 100px; right: 20px; z-index: 99; width: 44px; height: 44px; background: var(--surface2); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transform: translateY(20px); transition: all 0.3s; color: var(--text-dim); }
     #scrollTop.visible { opacity: 1; transform: translateY(0); }
     
@@ -248,55 +259,53 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
 
-    /* --- OPTIMIZACIONES MOBILE FIRST CRÍTICAS --- */
     @media (max-width: 600px) {
-      header { padding: 40px 16px 20px; }
-      
+      header { padding: 20px 16px 20px; }
       .hero-steps { grid-template-columns: 1fr; gap: 10px; padding: 15px; }
       .step-item { flex-direction: row; text-align: left; background: var(--surface2); padding: 12px; border-radius: 10px; }
       .step-icon { width: 40px; height: 40px; font-size: 1.3rem; flex-shrink: 0; }
       .hero-price-banner { font-size: 1.15rem; }
-
-      /* Grilla a 2 columnas Mobile-First */
       #grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .card-name { font-size: 0.95rem; min-height: 2.6em; margin-bottom: 8px; }
       .card-body { padding: 10px; }
       .card-meta { flex-direction: column; align-items: flex-start; gap: 6px; }
       .badge { font-size: 0.65rem; padding: 3px 6px; }
-
-      /* Bottom Bar súper compacta */
       .checkout-bar { padding: 12px; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px; border-top-left-radius: 16px; border-top-right-radius: 16px;}
       .checkout-info { flex: 1 1 100%; text-align: center; }
       .checkout-upsell { font-size: 0.9rem; line-height: 1.2; }
       .checkout-upsell b { font-size: 1.1rem; }
       .btn-checkout { width: 100%; padding: 12px; min-height: 44px; font-size: 1rem; justify-content: center;}
-      
       body { padding-bottom: 120px; }
     }
   </style>
 </head>
 <body>
 
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header>
-  <div class="logo">
-    <div class="logo-icon">🎮</div>
-    <h1>ZonaSteam</h1>
+  <div class="header-top">
+    <div class="logo">
+      <div class="logo-icon">🎮</div>
+      <h1>ZonaSteam</h1>
+    </div>
+    <button class="lang-btn" id="btn-lang" onclick="toggleLanguage()">🇺🇸 USD</button>
   </div>
   
   <div class="hero-cro">
-    <div class="hero-price-banner">🔥 1x $4.000 | 3x $8.000 | 10x $15.000</div>
+    <div class="hero-price-banner" data-i18n="hero_banner">🔥 1x $4.000 | 3x $8.000 | 10x $15.000</div>
     <div class="hero-steps">
       <div class="step-item">
         <div class="step-icon">🛒</div>
-        <div class="step-text"><b>1) Elige</b> tus juegos tocando las portadas.</div>
+        <div class="step-text" data-i18n="step1"><b>1) Elige</b> tus juegos tocando las portadas.</div>
       </div>
       <div class="step-item">
         <div class="step-icon">📲</div>
-        <div class="step-text"><b>2) Genera tu lista</b> con un solo clic abajo.</div>
+        <div class="step-text" data-i18n="step2"><b>2) Genera tu lista</b> con un solo clic abajo.</div>
       </div>
       <div class="step-item">
         <div class="step-icon">⚡</div>
-        <div class="step-text"><b>3) Paga en el chat</b> y recibe tu Key al instante.</div>
+        <div class="step-text" data-i18n="step3"><b>3) Paga en el chat</b> y recibe tu Key al instante.</div>
       </div>
     </div>
   </div>
@@ -306,23 +315,23 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
         <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
       </svg>
-      <input type="text" id="buscador" placeholder="Buscar juego o #AppID..." autocomplete="off"/>
+      <input type="text" id="buscador" data-i18n-ph="search_placeholder" placeholder="Buscar juego o #AppID..." autocomplete="off"/>
     </div>
   </div>
 </header>
 
 <div class="filters-wrap">
     <div class="filters" id="filters">
-      <button class="filter-btn active" data-filter="all">Todos los Juegos</button>
-      <button class="filter-btn" data-filter="disponible">✅ Disponibles</button>
-      <button class="filter-btn" data-filter="no-disponible">⏳ Próximamente</button>
+      <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Todos los Juegos</button>
+      <button class="filter-btn" data-filter="disponible" data-i18n="filter_disp">✅ Disponibles</button>
+      <button class="filter-btn" data-filter="no-disponible" data-i18n="filter_nodisp">⏳ Próximamente</button>
     </div>
     
     <div class="sort-box">
         <select id="sortSelect">
-            <option value="default">✨ Orden Recomendado</option>
-            <option value="az">A - Z (Alfabético)</option>
-            <option value="za">Z - A (Alfabético)</option>
+            <option value="default" data-i18n="sort_def">✨ Orden Recomendado</option>
+            <option value="az" data-i18n="sort_az">A - Z (Alfabético)</option>
+            <option value="za" data-i18n="sort_za">Z - A (Alfabético)</option>
         </select>
     </div>
 </div>
@@ -333,7 +342,7 @@
   <div id="grid">
     <div class="loader">
       <div class="spinner"></div>
-      <span class="loader-text">Sincronizando Catálogo...</span>
+      <span class="loader-text" data-i18n="loader">Sincronizando Catálogo...</span>
     </div>
   </div>
 </div>
@@ -342,7 +351,7 @@
     <div class="checkout-info">
         <div class="checkout-upsell" id="checkout-text"></div>
     </div>
-    <button class="btn-checkout" onclick="generarPedido()">
+    <button class="btn-checkout" onclick="generarPedido()" data-i18n="btn_checkout">
         Generar Pedido 🚀
     </button>
 </div>
@@ -350,24 +359,24 @@
 <div class="conversion-overlay" id="modal-conversion">
     <div class="conversion-modal">
         <div class="icon">✅</div>
-        <h2>¡Pedido copiado!</h2>
-        <p>Tu lista ya está en el portapapeles. Elige por dónde enviarla y pon <b>PEGAR</b> en el chat.</p>
+        <h2 data-i18n="modal_title">¡Pedido copiado!</h2>
+        <p data-i18n="modal_desc">Tu lista ya está en el portapapeles. Elige por dónde enviarla y pon <b>PEGAR</b> en el chat.</p>
         
         <a href="#" class="btn-wa-giant" id="btn-open-wa" target="_blank" onclick="cerrarModal()">
             <svg viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
             </svg>
-            Enviar por WhatsApp
+            <span data-i18n="btn_wa">Enviar por WhatsApp</span>
         </a>
 
         <a href="#" class="btn-ig-giant" id="btn-open-ig" target="_blank" onclick="cerrarModal()">
             <svg viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.058 3.252.148 4.771 1.691 4.919 4.919.046 1.265.058 1.645.058 4.859 0 3.214-.012 3.594-.058 4.859-.148 3.227-1.668 4.771-4.919 4.919-1.266.046-1.646.058-4.85.058-3.204 0-3.584-.012-4.85-.058-3.252-.148-4.771-1.691-4.919-4.919-.046-1.265-.058-1.645-.058-4.859 0-3.214.012-3.594.058-4.859.148-3.227 1.668-4.771 4.919-4.919 1.266-.046 1.646-.058 4.85-.058zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
-            Enviar por Instagram
+            <span data-i18n="btn_ig">Enviar por Instagram</span>
         </a>
 
-        <button class="filter-btn" style="margin-top:10px; width:100%" onclick="cerrarModal()">Cerrar</button>
+        <button class="filter-btn" style="margin-top:10px; width:100%" onclick="cerrarModal()" data-i18n="btn_close">Cerrar</button>
     </div>
 </div>
 
@@ -384,7 +393,7 @@
   // ⚠️ VARIABLES IMPORTANTES: REEMPLAZA CON TUS DATOS REALES
   // =======================================================
   const TU_USUARIO_IG = "zonasteam.store"; 
-  const TU_NUMERO_WA  = "5493816502549"; // Formato: sin '+' ni espacios
+  const TU_NUMERO_WA  = "5493816502549";
   
   const PAGE_SIZE = 60;
   const STEAM_IMG = id => `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg`;
@@ -398,10 +407,138 @@
   let cargandoMas  = false;
   let searchTimer  = null;
 
-  // Lógica del Carrito Gamificado
-  let juegosSeleccionados = new Map(); // appid -> nombre
+  // =======================================================
+  // 1. SISTEMA BILINGÜE Y PRECIOS (i18n)
+  // =======================================================
+  const dict = {
+    es: {
+      seo_title: "ZonaSteam — Catálogo Premium",
+      seo_desc: "Juegos a $4.000. Compra rápida y segura.",
+      hero_banner: "🔥 1x $4.000 | 3x $8.000 | 10x $15.000",
+      step1: "<b>1) Elige</b> tus juegos tocando las portadas.",
+      step2: "<b>2) Genera tu lista</b> con un solo clic abajo.",
+      step3: "<b>3) Paga en el chat</b> y recibe tu Key al instante.",
+      search_placeholder: "Buscar juego o #AppID...",
+      filter_all: "Todos los Juegos",
+      filter_disp: "✅ Disponibles",
+      filter_nodisp: "⏳ Próximamente",
+      sort_def: "✨ Orden Recomendado",
+      sort_az: "A - Z (Alfabético)",
+      sort_za: "Z - A (Alfabético)",
+      btn_checkout: "Generar Pedido 🚀",
+      modal_title: "¡Pedido copiado!",
+      modal_desc: "Tu lista ya está en el portapapeles. Elige por dónde enviarla y pon <b>PEGAR</b> en el chat.",
+      btn_wa: "Enviar por WhatsApp",
+      btn_ig: "Enviar por Instagram",
+      btn_close: "Cerrar",
+      badge_ok: "✅ Disp.",
+      badge_no: "⏳ Próx.",
+      loader: "Sincronizando Catálogo...",
+      empty_title: "Sin resultados",
+      empty_sub: "Prueba buscando otro nombre.",
+      counter_view: "Viendo <span>{total}</span> juegos — ",
+      counter_disp: "<span style=\"color:var(--success)\">{disp}</span> disponibles · ",
+      counter_no: "<span style=\"color:var(--warning)\">{nodisp}</span> próximamente",
+      upsell_1: "<b>1 juego ($4.000)</b>. ¡Suma 2 más y el 3ro es GRATIS!",
+      upsell_2: "<b>2 juegos ($8.000)</b>. ¡Solo 1 más para el Pack de 3!",
+      upsell_3: "<b>¡Pack de 3 alcanzado! ($8.000)</b> 🔥",
+      upsell_n: "<b>{count} juegos</b>. ¡Llega a 10 por $15.000!",
+      upsell_max: "<b>¡Pack Mayorista de {count} juegos!</b> 🔥",
+      msg_intro: "Hola, quiero armar este pack:\n"
+    },
+    en: {
+      seo_title: "ZonaSteam — Premium Catalog",
+      seo_desc: "Games at $4.00. Fast and secure purchase.",
+      hero_banner: "🔥 1x $4.00 | 3x $8.00 | 10x $15.00",
+      step1: "<b>1) Choose</b> your games by tapping the covers.",
+      step2: "<b>2) Generate list</b> with a single click below.",
+      step3: "<b>3) Pay in chat</b> and get your Key instantly.",
+      search_placeholder: "Search game or #AppID...",
+      filter_all: "All Games",
+      filter_disp: "✅ Available",
+      filter_nodisp: "⏳ Coming Soon",
+      sort_def: "✨ Recommended Order",
+      sort_az: "A - Z (Alphabetical)",
+      sort_za: "Z - A (Alphabetical)",
+      btn_checkout: "Generate Order 🚀",
+      modal_title: "Order copied!",
+      modal_desc: "Your list is in the clipboard. Choose where to send it and hit <b>PASTE</b> in the chat.",
+      btn_wa: "Send via WhatsApp",
+      btn_ig: "Send via Instagram",
+      btn_close: "Close",
+      badge_ok: "✅ Avail.",
+      badge_no: "⏳ Soon",
+      loader: "Synchronizing Catalog...",
+      empty_title: "No results",
+      empty_sub: "Try searching another name.",
+      counter_view: "Viewing <span>{total}</span> games — ",
+      counter_disp: "<span style=\"color:var(--success)\">{disp}</span> available · ",
+      counter_no: "<span style=\"color:var(--warning)\">{nodisp}</span> coming soon",
+      upsell_1: "<b>1 game ($4.00)</b>. Add 2 more and the 3rd is FREE!",
+      upsell_2: "<b>2 games ($8.00)</b>. Just 1 more for the 3-Pack!",
+      upsell_3: "<b>3-Pack reached! ($8.00)</b> 🔥",
+      upsell_n: "<b>{count} games</b>. Reach 10 for $15.00!",
+      upsell_max: "<b>Wholesale Pack of {count} games!</b> 🔥",
+      msg_intro: "Hello, I want to order this pack:\n"
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
+
+  function applyLanguage() {
+      const texts = dict[currentLang];
+      
+      // Meta y SEO
+      document.getElementById('page-title').innerText = texts.seo_title;
+      document.getElementById('meta-desc').content = texts.seo_desc;
+      document.getElementById('og-title').content = texts.seo_title;
+      document.getElementById('og-desc').content = texts.seo_desc;
+      document.getElementById('tw-title').content = texts.seo_title;
+      document.getElementById('tw-desc').content = texts.seo_desc;
+
+      // Textos HTML
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+          el.innerHTML = texts[el.getAttribute('data-i18n')];
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+          el.placeholder = texts[el.getAttribute('data-i18n-ph')];
+      });
+      
+      // Botón Toggle
+      document.getElementById('btn-lang').innerText = currentLang === 'es' ? '🇺🇸 USD' : '🇦🇷 ARS';
+      
+      // Refrescar UI dinámica
+      actualizarCounter();
+      actualizarBottomBar();
+      if(filtrados.length > 0) { paginaActual = 0; document.getElementById('grid').innerHTML = ''; renderPagina(); }
+  }
+
+  function toggleLanguage() {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      localStorage.setItem('lang', currentLang);
+      applyLanguage();
+  }
+
+  // =======================================================
+  // 2. LÓGICA DEL CARRITO PERSISTENTE
+  // =======================================================
+  let juegosSeleccionados = new Map();
+
+  function cargarCarrito() {
+      const savedCart = localStorage.getItem('cart_zonasteam');
+      if (savedCart) {
+          try { juegosSeleccionados = new Map(JSON.parse(savedCart)); } catch(e) { }
+      }
+  }
+
+  function guardarCarrito() {
+      localStorage.setItem('cart_zonasteam', JSON.stringify(Array.from(juegosSeleccionados.entries())));
+  }
 
   window.addEventListener('DOMContentLoaded', () => {
+    applyLanguage();
+    cargarCarrito();
+    
     const params = new URLSearchParams(window.location.search);
     if (params.has('q')) {
       const queryUrl = params.get('q');
@@ -411,20 +548,23 @@
     cargar();
   });
 
+  // =======================================================
+  // 3. CARGA DE CATÁLOGO (Optimizado con JSDelivr)
+  // =======================================================
   async function cargar() {
     try {
       let data = null;
 
+      // Intentar primero desde JSDelivr (CDN veloz global)
       try {
-        const apiResponse = await fetch('https://api.github.com/repos/zonasteamstore-gif/catalogo/contents/catalogo.json', {
-          headers: { 'Accept': 'application/vnd.github.v3.raw', 'Cache-Control': 'no-cache' }
-        });
-        if (apiResponse.ok) data = await apiResponse.json();
+        const cdnResponse = await fetch('https://cdn.jsdelivr.net/gh/zonasteamstore-gif/catalogo@main/catalogo.json?t=' + Date.now(), { cache: 'no-store' });
+        if (cdnResponse.ok) data = await cdnResponse.json();
       } catch (error) {}
 
+      // Fallback a GitHub Raw si CDN falla
       if (!data) {
-        const cdnResponse = await fetch('https://raw.githubusercontent.com/zonasteamstore-gif/catalogo/main/catalogo.json?t=' + Date.now(), { cache: 'no-store' });
-        if (cdnResponse.ok) data = await cdnResponse.json();
+        const rawResponse = await fetch('https://raw.githubusercontent.com/zonasteamstore-gif/catalogo/main/catalogo.json?t=' + Date.now(), { cache: 'no-store' });
+        if (rawResponse.ok) data = await rawResponse.json();
       }
 
       if (data && Array.isArray(data)) {
@@ -432,21 +572,27 @@
       }
 
       if (todosJuegos.length === 0) {
-        mostrarVacio('Catálogo no encontrado', 'Asegúrate de que el archivo catalogo.json esté publicado en GitHub.');
+        mostrarVacio(dict[currentLang].empty_title, 'Asegúrate de que el archivo catalogo.json esté publicado.');
         return;
       }
       
       aplicarFiltros();
+      actualizarBottomBar();
       
     } catch(e) {
       mostrarVacio('Error de conexión', 'No se pudo obtener el catálogo desde los servidores.');
     }
   }
 
+  // Normalizar strings para evitar problemas de tildes
+  function removeAccents(str) {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  }
+
   function aplicarFiltros() {
-    const q = queryActual.toLowerCase().trim();
+    const q = queryActual.trim();
     const isAppIdSearch = q.startsWith('#');
-    const cleanQ = isAppIdSearch ? q.substring(1).trim() : q;
+    const cleanQ = isAppIdSearch ? q.substring(1).trim() : removeAccents(q);
     
     filtrados = todosJuegos.filter(j => {
       const matchFiltro =
@@ -455,12 +601,11 @@
         filtroActivo === 'no-disponible' ? j[2] === false : true;
         
       const matchQuery = q.length < 1 ? true : 
-                         (isAppIdSearch ? String(j[0]) === cleanQ : j[1].toLowerCase().includes(q));
+                         (isAppIdSearch ? String(j[0]) === cleanQ : removeAccents(j[1]).includes(cleanQ));
       
       return matchFiltro && matchQuery;
     });
 
-    // Lógica de Ordenamiento A-Z
     if (sortBy === 'az') {
         filtrados.sort((a, b) => a[1].localeCompare(b[1]));
     } else if (sortBy === 'za') {
@@ -477,13 +622,14 @@
     const disp   = filtrados.filter(j => j[2] === true).length;
     const noDisp = filtrados.filter(j => j[2] === false).length;
     const el = document.getElementById('counter');
+    const t = dict[currentLang];
     
-    if (filtrados.length === 0) { el.innerHTML = 'Sin coincidencias para la búsqueda.'; return; }
+    if (filtrados.length === 0) { el.innerHTML = ''; return; }
     
     el.innerHTML =
-      `Viendo <span>${filtrados.length.toLocaleString()}</span> juegos — ` +
-      `<span style="color:var(--success)">${disp.toLocaleString()}</span> disponibles · ` +
-      `<span style="color:var(--warning)">${noDisp.toLocaleString()}</span> próximamente`;
+      t.counter_view.replace('{total}', filtrados.length.toLocaleString()) +
+      t.counter_disp.replace('{disp}', disp.toLocaleString()) +
+      t.counter_no.replace('{nodisp}', noDisp.toLocaleString());
   }
 
   function renderPagina() {
@@ -491,9 +637,10 @@
     const desde = paginaActual * PAGE_SIZE;
     const hasta = Math.min(desde + PAGE_SIZE, filtrados.length);
     const chunk = filtrados.slice(desde, hasta);
+    const t = dict[currentLang];
 
     if (chunk.length === 0 && paginaActual === 0) {
-      mostrarVacio('Sin resultados', 'Prueba buscando otro nombre.');
+      mostrarVacio(t.empty_title, t.empty_sub);
       return;
     }
 
@@ -508,7 +655,6 @@
       card.style.animationDelay = `${(idx % PAGE_SIZE) * 15}ms`;
       card.id = `card-${appid}`;
       
-      // Solo las tarjetas disponibles son seleccionables
       if (disponible) {
           card.onclick = () => toggleSeleccion(appid, nombre, card);
       }
@@ -523,7 +669,7 @@
         <div class="card-body">
           <div class="card-name" title="${esc(nombre)}">${esc(nombre)}</div>
           <div class="card-meta">
-            <span class="badge ${disponible ? 'ok' : 'no'}">${disponible ? '✅ Disp.' : '⏳ Próx.'}</span>
+            <span class="badge ${disponible ? 'ok' : 'no'}">${disponible ? t.badge_ok : t.badge_no}</span>
             <span class="appid-tag">#${appid}</span>
           </div>
         </div>`;
@@ -534,7 +680,6 @@
     paginaActual++;
   }
 
-  // Interacción del Carrito Gamificado
   function toggleSeleccion(appid, nombre, cardElement) {
       if (juegosSeleccionados.has(appid)) {
           juegosSeleccionados.delete(appid);
@@ -543,14 +688,15 @@
           juegosSeleccionados.set(appid, nombre);
           cardElement.classList.add('selected');
       }
+      guardarCarrito();
       actualizarBottomBar();
   }
 
-  // Actualizar Textos Dinámicos de Upsell
   function actualizarBottomBar() {
       const count = juegosSeleccionados.size;
       const bar = document.getElementById('checkout-bar');
       const textEl = document.getElementById('checkout-text');
+      const t = dict[currentLang];
 
       if (count === 0) {
           bar.classList.remove('visible');
@@ -559,55 +705,48 @@
       
       bar.classList.add('visible');
 
-      if (count === 1) {
-          textEl.innerHTML = `<b>1 juego ($4k)</b>. ¡Suma 2 más y el 3ro es GRATIS!`;
-      } else if (count === 2) {
-          textEl.innerHTML = `<b>2 juegos ($8k)</b>. ¡Solo 1 más para el Pack de 3!`;
-      } else if (count === 3) {
-          textEl.innerHTML = `<b>¡Pack de 3 alcanzado! ($8k)</b> 🔥`;
-      } else if (count > 3 && count < 10) {
-          textEl.innerHTML = `<b>${count} juegos</b>. ¡Llega a 10 por $15k!`;
-      } else if (count >= 10) {
-          textEl.innerHTML = `<b>¡Pack Mayorista de ${count} juegos!</b> 🔥`;
-      }
+      if (count === 1) textEl.innerHTML = t.upsell_1;
+      else if (count === 2) textEl.innerHTML = t.upsell_2;
+      else if (count === 3) textEl.innerHTML = t.upsell_3;
+      else if (count > 3 && count < 10) textEl.innerHTML = t.upsell_n.replace('{count}', count);
+      else if (count >= 10) textEl.innerHTML = t.upsell_max.replace('{count}', count);
   }
 
-  // Lógica Maestra de Deep Linking
   function configurarEnlacesDeepLinking(mensaje) {
       const btnIg = document.getElementById('btn-open-ig');
       const btnWa = document.getElementById('btn-open-wa');
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      
-      // Codificamos el mensaje para la URL
       const encodedMsg = encodeURIComponent(mensaje);
 
-      // --- DEEP LINK INSTAGRAM ---
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-          // iOS
           btnIg.href = `instagram://direct_share?username=${TU_USUARIO_IG}`;
       } else if (/android/i.test(userAgent)) {
-          // Android
           btnIg.href = `intent://ig.me/m/${TU_USUARIO_IG}/#Intent;package=com.instagram.android;scheme=https;end`;
       } else {
-          // Desktop
           btnIg.href = `https://ig.me/m/${TU_USUARIO_IG}`;
       }
 
-      // --- DEEP LINK WHATSAPP ---
       btnWa.href = `https://api.whatsapp.com/send?phone=${TU_NUMERO_WA}&text=${encodedMsg}`;
   }
 
-  // Generar Pedido y mostrar Modal (La Acción de Conversión)
+  // =======================================================
+  // 4. CHECKOUT Y MARKETING (GTM & Pixel Trigger)
+  // =======================================================
   function generarPedido() {
-      let txt = "Hola Zonasteam, quiero armar este pack:\n";
+      let txt = dict[currentLang].msg_intro;
       juegosSeleccionados.forEach((nombre) => {
           txt += `- ${nombre}\n`;
       });
 
-      // Configurar los botones del modal con el texto armado
       configurarEnlacesDeepLinking(txt);
 
-      // Copiar al portapapeles y abrir Modal
+      // Disparo de Evento Analítico (Marketing)
+      console.log("EVENT: Lead/Purchase triggered. Items:", juegosSeleccionados.size);
+      try {
+          if(typeof fbq === 'function') fbq('track', 'Lead');
+          if(typeof dataLayer !== 'undefined') dataLayer.push({'event': 'generate_lead', 'value': juegosSeleccionados.size});
+      } catch(e){}
+
       navigator.clipboard.writeText(txt).then(() => {
           document.getElementById('modal-conversion').classList.add('show');
       }).catch(err => {
@@ -619,7 +758,6 @@
       document.getElementById('modal-conversion').classList.remove('show');
   }
 
-  // Listeners de Eventos
   document.getElementById('sortSelect').addEventListener('change', e => {
       sortBy = e.target.value;
       aplicarFiltros();
