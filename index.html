@@ -11,7 +11,9 @@
   <meta property="og:url" content="https://zonasteamstore.com/">
   <meta property="og:title" id="og-title" content="ZonaSteam — Catálogo Premium">
   <meta property="og:description" id="og-desc" content="Juegos a $4.000. Compra rápida y segura.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop"> <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop"> 
+  
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" id="tw-title" content="ZonaSteam — Catálogo Premium">
   <meta name="twitter:description" id="tw-desc" content="Juegos a $4.000. Compra rápida y segura.">
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop">
@@ -178,31 +180,44 @@
     .badge { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
     .badge.ok { background: rgba(0, 230, 118, 0.15); color: var(--success); border: 1px solid rgba(0, 230, 118, 0.3); }
     .badge.no { background: rgba(240, 165, 0, 0.15); color: var(--warning); border: 1px solid rgba(240, 165, 0, 0.3); }
-    .appid-tag { font-size: 0.7rem; color: var(--text-mute); font-family: monospace; }
+    
+    /* MODIFICACIÓN: AppID clickeable */
+    .appid-tag { font-size: 0.7rem; color: var(--text-mute); font-family: monospace; cursor: pointer; transition: color 0.2s, text-decoration 0.2s; position: relative; z-index: 10; padding: 2px 4px; border-radius: 4px; }
+    .appid-tag:hover { color: var(--accent); background: rgba(0, 229, 255, 0.1); }
 
-    /* BOTTOM BAR CHECKOUT */
+    /* BOTTOM BAR CHECKOUT & CART BUTTON */
     .checkout-bar {
       position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13, 18, 32, 0.95);
       backdrop-filter: blur(15px); border-top: 1px solid var(--accent); padding: 15px 24px;
       display: flex; justify-content: space-between; align-items: center; z-index: 1000;
       transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.6); flex-wrap: wrap; gap: 10px;
     }
     .checkout-bar.visible { transform: translateY(0); }
     
-    .checkout-info { display: flex; flex-direction: column; gap: 4px; }
+    .checkout-info { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; }
     .checkout-upsell { font-size: 1.1rem; color: var(--text); }
     .checkout-upsell b { color: var(--accent); font-weight: 700; font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; letter-spacing: 0.5px; }
+    
+    .checkout-actions { display: flex; gap: 10px; align-items: center; flex: 0 0 auto; }
+
+    .btn-cart {
+      background: var(--surface2); color: var(--text); border: 1px solid var(--border);
+      padding: 14px 20px; border-radius: 12px; font-size: 1rem; font-weight: 600;
+      cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.2s;
+      font-family: 'Inter', sans-serif; white-space: nowrap;
+    }
+    .btn-cart:hover { border-color: var(--accent); color: var(--accent); background: rgba(0, 229, 255, 0.05); }
     
     .btn-checkout {
       background: var(--accent); color: #000; border: none; padding: 14px 28px;
       border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer;
       display: flex; align-items: center; gap: 10px; transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 5px 20px var(--glow-cyan); font-family: 'Inter', sans-serif;
+      box-shadow: 0 5px 20px var(--glow-cyan); font-family: 'Inter', sans-serif; white-space: nowrap;
     }
     .btn-checkout:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(0, 229, 255, 0.5); }
 
-    /* MODAL ANTI-FALLAS */
+    /* MODALES GENERALES (Checkout y Carrito) */
     .conversion-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000;
       display: flex; align-items: center; justify-content: center; opacity: 0; 
@@ -214,13 +229,42 @@
       background: var(--surface); border: 2px solid var(--accent); border-radius: 20px;
       padding: 30px 20px; text-align: center; width: 90%; max-width: 420px;
       transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 20px 50px rgba(0, 229, 255, 0.15);
+      box-shadow: 0 20px 50px rgba(0, 229, 255, 0.15); display: flex; flex-direction: column;
     }
     .conversion-overlay.show .conversion-modal { transform: scale(1); }
     
-    .conversion-modal .icon { font-size: 3.5rem; margin-bottom: 10px; }
-    .conversion-modal h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
-    .conversion-modal p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.4; margin-bottom: 20px; }
+    /* MODAL CARRITO ESPECÍFICO */
+    .cart-modal { max-height: 85vh; padding: 25px 20px; text-align: left; }
+    .btn-close-icon { background: none; border: none; color: var(--text-dim); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; line-height: 1; }
+    .btn-close-icon:hover { color: var(--danger); }
+    
+    .cart-items-list { max-height: 50vh; overflow-y: auto; padding-right: 5px; margin-bottom: 15px; }
+    .cart-items-list::-webkit-scrollbar { width: 6px; }
+    .cart-items-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+    
+    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; gap: 10px; transition: border-color 0.2s; }
+    .cart-item:hover { border-color: rgba(255, 255, 255, 0.2); }
+    .cart-item-name { font-size: 0.95rem; color: #fff; font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .btn-trash { background: none; border: none; font-size: 1.2rem; cursor: pointer; opacity: 0.6; transition: opacity 0.2s, transform 0.2s; flex-shrink: 0; padding: 4px; }
+    .btn-trash:hover { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 5px rgba(255,58,58,0.5)); }
+    
+    .cart-footer { border-top: 1px solid var(--border); padding-top: 15px; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; }
+    .cart-total strong { color: var(--accent); font-size: 1.4rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.5px; }
+
+    /* ESTILOS DE TOAST (Notificaciones) */
+    .toast {
+      position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: var(--surface-hover); color: var(--accent); padding: 12px 24px;
+      border-radius: 12px; border: 1px solid var(--accent); font-weight: 600; font-size: 0.95rem;
+      opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(0, 229, 255, 0.2);
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* BOTONES DE REDES MODAL CONVERSIÓN */
+    .conversion-modal .icon { font-size: 3.5rem; margin-bottom: 10px; text-align: center; }
+    .conversion-modal h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 10px; text-align: center; }
+    .conversion-modal p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.4; margin-bottom: 20px; text-align: center; }
     
     .btn-ig-giant {
       display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -270,12 +314,17 @@
       .card-body { padding: 10px; }
       .card-meta { flex-direction: column; align-items: flex-start; gap: 6px; }
       .badge { font-size: 0.65rem; padding: 3px 6px; }
-      .checkout-bar { padding: 12px; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px; border-top-left-radius: 16px; border-top-right-radius: 16px;}
-      .checkout-info { flex: 1 1 100%; text-align: center; }
+      
+      .checkout-bar { padding: 12px; flex-direction: column; gap: 10px; border-top-left-radius: 16px; border-top-right-radius: 16px;}
+      .checkout-info { width: 100%; text-align: center; }
       .checkout-upsell { font-size: 0.9rem; line-height: 1.2; }
       .checkout-upsell b { font-size: 1.1rem; }
-      .btn-checkout { width: 100%; padding: 12px; min-height: 44px; font-size: 1rem; justify-content: center;}
-      body { padding-bottom: 120px; }
+      .checkout-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .btn-cart { justify-content: center; padding: 12px 10px; font-size: 0.9rem; }
+      .btn-checkout { justify-content: center; padding: 12px 10px; font-size: 0.9rem; }
+      body { padding-bottom: 140px; }
+      #scrollTop { bottom: 120px; }
+      .toast { bottom: 120px; width: 90%; text-align: center; }
     }
   </style>
 </head>
@@ -351,9 +400,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="checkout-info">
         <div class="checkout-upsell" id="checkout-text"></div>
     </div>
-    <button class="btn-checkout" onclick="generarPedido()" data-i18n="btn_checkout">
-        Generar Pedido 🚀
-    </button>
+    <div class="checkout-actions">
+        <button class="btn-cart" onclick="abrirCarrito()">
+            <span data-i18n="btn_cart">🛒 Ver carrito</span> (<span id="cart-count">0</span>)
+        </button>
+        <button class="btn-checkout" onclick="generarPedido()" data-i18n="btn_checkout">
+            Generar Pedido 🚀
+        </button>
+    </div>
+</div>
+
+<div class="conversion-overlay" id="modal-cart">
+    <div class="conversion-modal cart-modal">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px;">
+            <h2 data-i18n="cart_title" style="margin:0; font-size:1.6rem; text-align:left;">Tu Carrito</h2>
+            <button class="btn-close-icon" onclick="cerrarCarrito()">✕</button>
+        </div>
+        <div id="cart-items" class="cart-items-list">
+            </div>
+        <div class="cart-footer">
+            <span data-i18n="cart_total" style="color:var(--text-dim);">Total estimado:</span>
+            <strong id="cart-total-price">$0</strong>
+        </div>
+    </div>
 </div>
 
 <div class="conversion-overlay" id="modal-conversion">
@@ -362,21 +431,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 data-i18n="modal_title">¡Pedido copiado!</h2>
         <p data-i18n="modal_desc">Tu lista ya está en el portapapeles. Elige por dónde enviarla y pon <b>PEGAR</b> en el chat.</p>
         
-        <a href="#" class="btn-wa-giant" id="btn-open-wa" target="_blank" onclick="cerrarModal()">
+        <a href="#" class="btn-wa-giant" id="btn-open-wa" target="_blank" onclick="cerrarModalConversion()">
             <svg viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
             </svg>
             <span data-i18n="btn_wa">Enviar por WhatsApp</span>
         </a>
 
-        <a href="#" class="btn-ig-giant" id="btn-open-ig" target="_blank" onclick="cerrarModal()">
+        <a href="#" class="btn-ig-giant" id="btn-open-ig" target="_blank" onclick="cerrarModalConversion()">
             <svg viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.058 3.252.148 4.771 1.691 4.919 4.919.046 1.265.058 1.645.058 4.859 0 3.214-.012 3.594-.058 4.859-.148 3.227-1.668 4.771-4.919 4.919-1.266.046-1.646.058-4.85.058-3.204 0-3.584-.012-4.85-.058-3.252-.148-4.771-1.691-4.919-4.919-.046-1.265-.058-1.645-.058-4.859 0-3.214.012-3.594.058-4.859.148-3.227 1.668-4.771 4.919-4.919 1.266-.046 1.646-.058 4.85-.058zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
             <span data-i18n="btn_ig">Enviar por Instagram</span>
         </a>
 
-        <button class="filter-btn" style="margin-top:10px; width:100%" onclick="cerrarModal()" data-i18n="btn_close">Cerrar</button>
+        <button class="filter-btn" style="margin-top:10px; width:100%" onclick="cerrarModalConversion()" data-i18n="btn_close">Cerrar</button>
     </div>
 </div>
 
@@ -387,6 +456,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <path d="M18 15l-6-6-6 6"/>
   </svg>
 </button>
+
+<div id="toast" class="toast"></div>
 
 <script>
   // =======================================================
@@ -425,6 +496,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       sort_def: "✨ Orden Recomendado",
       sort_az: "A - Z (Alfabético)",
       sort_za: "Z - A (Alfabético)",
+      btn_cart: "🛒 Ver carrito",
+      cart_title: "Tu Carrito",
+      cart_total: "Total estimado:",
+      empty_cart: "Tu carrito está vacío.",
+      toast_appid: "✅ AppID copiado al portapapeles",
       btn_checkout: "Generar Pedido 🚀",
       modal_title: "¡Pedido copiado!",
       modal_desc: "Tu lista ya está en el portapapeles. Elige por dónde enviarla y pon <b>PEGAR</b> en el chat.",
@@ -460,6 +536,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       sort_def: "✨ Recommended Order",
       sort_az: "A - Z (Alphabetical)",
       sort_za: "Z - A (Alphabetical)",
+      btn_cart: "🛒 View Cart",
+      cart_title: "Your Cart",
+      cart_total: "Estimated Total:",
+      empty_cart: "Your cart is empty.",
+      toast_appid: "✅ AppID copied to clipboard",
       btn_checkout: "Generate Order 🚀",
       modal_title: "Order copied!",
       modal_desc: "Your list is in the clipboard. Choose where to send it and hit <b>PASTE</b> in the chat.",
@@ -511,12 +592,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       actualizarCounter();
       actualizarBottomBar();
       if(filtrados.length > 0) { paginaActual = 0; document.getElementById('grid').innerHTML = ''; renderPagina(); }
+      
+      // Si el carrito está abierto, refrescar precio
+      if (document.getElementById('modal-cart').classList.contains('show')) {
+          document.getElementById('cart-total-price').innerText = calcularTotalCarrito(juegosSeleccionados.size, currentLang);
+      }
   }
 
   function toggleLanguage() {
       currentLang = currentLang === 'es' ? 'en' : 'es';
       localStorage.setItem('lang', currentLang);
       applyLanguage();
+  }
+
+  // =======================================================
+  // Funciones de Notificación (Toast)
+  // =======================================================
+  let toastTimer;
+  function toast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
   }
 
   // =======================================================
@@ -533,6 +631,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function guardarCarrito() {
       localStorage.setItem('cart_zonasteam', JSON.stringify(Array.from(juegosSeleccionados.entries())));
+  }
+
+  // MODIFICACIÓN: Cálculo del precio según reglas regionales
+  function calcularTotalCarrito(cantidad, lang) {
+      // Regla general de packs: 10 = $15k, 3 = $8k, 1 = $4k
+      let packs10 = Math.floor(cantidad / 10);
+      let remainder10 = cantidad % 10;
+      let packs3 = Math.floor(remainder10 / 3);
+      let remainder3 = remainder10 % 3;
+
+      if (lang === 'es') {
+          let total = (packs10 * 15000) + (packs3 * 8000) + (remainder3 * 4000);
+          return `$${total.toLocaleString('es-AR')}`;
+      } else {
+          let total = (packs10 * 15.00) + (packs3 * 8.00) + (remainder3 * 4.00);
+          return `$${total.toFixed(2)}`;
+      }
+  }
+
+  // MODIFICACIÓN: Funciones del Modal de Carrito
+  function abrirCarrito() {
+      const list = document.getElementById('cart-items');
+      const texts = dict[currentLang];
+      list.innerHTML = '';
+      
+      if (juegosSeleccionados.size === 0) {
+          list.innerHTML = `<p style="color:var(--text-mute); text-align:center; padding: 20px;">${texts.empty_cart}</p>`;
+      } else {
+          juegosSeleccionados.forEach((nombre, appid) => {
+              list.innerHTML += `
+              <div class="cart-item">
+                  <span class="cart-item-name">${esc(nombre)}</span>
+                  <button class="btn-trash" onclick="removerDelCarrito('${appid}')">🗑️</button>
+              </div>`;
+          });
+      }
+      
+      document.getElementById('cart-total-price').innerText = calcularTotalCarrito(juegosSeleccionados.size, currentLang);
+      document.getElementById('modal-cart').classList.add('show');
+  }
+
+  function cerrarCarrito() {
+      document.getElementById('modal-cart').classList.remove('show');
+  }
+
+  function removerDelCarrito(appid) {
+      if (juegosSeleccionados.has(appid)) {
+          juegosSeleccionados.delete(appid);
+          guardarCarrito();
+          actualizarBottomBar();
+          
+          // Actualizar estado visual de la tarjeta en el fondo si existe
+          const card = document.getElementById(`card-${appid}`);
+          if (card) card.classList.remove('selected');
+          
+          abrirCarrito(); // Re-renderizar lista
+      }
   }
 
   window.addEventListener('DOMContentLoaded', () => {
@@ -632,6 +787,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       t.counter_no.replace('{nodisp}', noDisp.toLocaleString());
   }
 
+  // MODIFICACIÓN: Función auxiliar para copiar AppID
+  function copiarAppID(appid, event) {
+      event.stopPropagation(); // Evita que se seleccione la tarjeta al hacer clic en el appID
+      navigator.clipboard.writeText(appid).then(() => {
+          toast(dict[currentLang].toast_appid);
+      }).catch(err => console.error("Error al copiar AppID:", err));
+  }
+
   function renderPagina() {
     const grid  = document.getElementById('grid');
     const desde = paginaActual * PAGE_SIZE;
@@ -659,6 +822,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           card.onclick = () => toggleSeleccion(appid, nombre, card);
       }
       
+      // MODIFICACIÓN: Integración del onClick en el span del AppID
       card.innerHTML = `
         <div class="check-overlay"><div class="check-circle">✅</div></div>
         <div class="card-img">
@@ -670,7 +834,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="card-name" title="${esc(nombre)}">${esc(nombre)}</div>
           <div class="card-meta">
             <span class="badge ${disponible ? 'ok' : 'no'}">${disponible ? t.badge_ok : t.badge_no}</span>
-            <span class="appid-tag">#${appid}</span>
+            <span class="appid-tag" onclick="copiarAppID('${appid}', event)" title="Clic para copiar">#${appid}</span>
           </div>
         </div>`;
         
@@ -696,6 +860,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const count = juegosSeleccionados.size;
       const bar = document.getElementById('checkout-bar');
       const textEl = document.getElementById('checkout-text');
+      const countSpan = document.getElementById('cart-count');
       const t = dict[currentLang];
 
       if (count === 0) {
@@ -704,6 +869,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
       
       bar.classList.add('visible');
+      countSpan.innerText = count;
 
       if (count === 1) textEl.innerHTML = t.upsell_1;
       else if (count === 2) textEl.innerHTML = t.upsell_2;
@@ -754,7 +920,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
   }
   
-  function cerrarModal() {
+  function cerrarModalConversion() {
       document.getElementById('modal-conversion').classList.remove('show');
   }
 
